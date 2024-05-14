@@ -19,4 +19,8 @@
         <item name="layout_constraintRight_toRightOf">parent</item>
         <item name="menu">@menu/bottom_navigation_menu</item>
     </style>
+
+    <style name="ViewLine">
+        <item name="android:background">@color/turquoise_300</item>
+    </style>
 </resources>

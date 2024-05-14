@@ -23,9 +23,8 @@
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_1"
-        android:background="@color/turquoise_300"
-        app:layout_constraintBottom_toBottomOf="@+id/fragmentContainerView"
-        tools:layout_editor_absoluteX="@dimen/dimen_16" />
+        style="@style/ViewLine"
+        app:layout_constraintBottom_toBottomOf="@+id/fragmentContainerView" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation_menu"
