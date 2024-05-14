@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:textFontWeight">500</item>
+        <item name="android:textSize">@dimen/text_14</item>
+        <item name="android:backgroundTint">@color/turquoise_100</item>
+        <item name="android:background">@color/turquoise_100</item>
+        <item name="itemTextAppearanceActive">@style/BottomNavigationView</item>
+        <item name="itemTextAppearanceInactive">@style/BottomNavigationView</item>
+        <item name="itemIconTint">@color/bottom_navigation_menu_color</item>
+        <item name="itemTextColor">@color/bottom_navigation_menu_color</item>
+        <item name="labelVisibilityMode">labeled</item>
+        <item name="itemRippleColor">@null</item>
+        <item name="layout_constraintBottom_toBottomOf">parent</item>
+        <item name="layout_constraintLeft_toLeftOf">parent</item>
+        <item name="layout_constraintRight_toRightOf">parent</item>
+        <item name="menu">@menu/bottom_navigation_menu</item>
+    </style>
+</resources>
