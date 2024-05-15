@@ -9,6 +9,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
+        android:visibility="visible"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -19,12 +20,59 @@
         app:defaultNavHost="true"
         app:navGraph="@navigation/navigation_fragments" />
 
+    <FrameLayout
+        android:id="@+id/layoutSetting"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            style="@style/HeaderOne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_23"
+            android:layout_marginTop="@dimen/dimen_23"
+            android:text="@string/setting" />
+
+        <View
+            android:id="@+id/view2"
+            style="@style/ViewLine"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_1"
+            android:layout_marginTop="@dimen/dimen_78"
+            app:layout_constraintBottom_toBottomOf="@+id/fragmentContainerView" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchTheme"
+            style="@style/SwitchSettingMaterial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_30"
+            android:layout_marginTop="@dimen/dimen_136"
+            android:gravity="center"
+            android:thumb="@drawable/shape_thumb_switch"
+            app:track="@drawable/shape_track_switch" />
+
+        <TextView
+            style="@style/HeaderTree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_111"
+            android:layout_marginTop="@dimen/dimen_142"
+            android:text="@string/application_theme" />
+
+    </FrameLayout>
+
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_1"
         style="@style/ViewLine"
-        app:layout_constraintBottom_toBottomOf="@+id/fragmentContainerView" />
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_menu" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation_menu"

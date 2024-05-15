@@ -37,9 +37,4 @@
             android:id="@+id/action_userFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/settingFragment"
-        android:name="com.msaggik.githubclientapp.view.fragments.SettingFragment"
-        android:label="fragment_setting"
-        tools:layout="@layout/fragment_setting" />
 </navigation>

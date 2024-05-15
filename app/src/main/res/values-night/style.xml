@@ -3,4 +3,19 @@
     <style name="ViewLine">
         <item name="android:background">@color/turquoise_900</item>
     </style>
+
+    <style name="SwitchSettingMaterial">
+        <item name="thumbTint">@color/turquoise_300</item>
+        <item name="trackTint">@color/turquoise_800</item>
+        <item name="android:checked">true</item>
+    </style>
+
+    <style name="HeaderOne" parent="BaseHeaderOne">
+        <item name="android:textColor">@color/turquoise_300</item>
+    </style>
+
+    <style name="HeaderTree" parent="BaseHeaderTree">
+        <item name="android:textColor">@color/turquoise_300</item>
+    </style>
+
 </resources>

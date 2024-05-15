@@ -1,9 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.GitHubClientApp" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
         <item name="android:background">@color/turquoise_1000</item>
+        <item name="android:statusBarColor">@color/turquoise_1000</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
     </style>
 
     <style name="Theme.GitHubClientApp" parent="Base.Theme.GitHubClientApp" />
