@@ -166,6 +166,10 @@ class SearchFragment : Fragment() {
                                 textPlaceholder.text = getString(R.string.text_placeholder_one)
                                 textPlaceholder.visibility = View.VISIBLE
                             }
+                        } else if(response.code() == 403){
+                            listViewItem.visibility = View.GONE
+                            textPlaceholder.text = getString(R.string.request_limit_exceeded)
+                            textPlaceholder.visibility = View.VISIBLE
                         } else {
                             listViewItem.visibility = View.GONE
                             textPlaceholder.text = getString(R.string.text_placeholder_two)
@@ -188,14 +192,12 @@ class SearchFragment : Fragment() {
     private fun showFollowers(item: Item) {
         var listFollowers: MutableList<Follower> = mutableListOf()
         if (item.login?.isNotEmpty() == true) {
-            gitHubRestService.showFollowers(item.login!!).enqueue(object :
-                Callback<List<Follower>> {
+            gitHubRestService.showFollowers(item.login!!).enqueue(object : Callback<List<Follower>> {
                 @SuppressLint("NotifyDataSetChanged")
                 override fun onResponse(
                     call: Call<List<Follower>>,
                     response: Response<List<Follower>>
                 ) {
-                    Log.i("response followers", "" + response.code())
                     if (response.code() == 200) {
                         if (response.body()?.isNotEmpty() == true) {
                             listFollowers.addAll(response.body()!!)
@@ -205,6 +207,8 @@ class SearchFragment : Fragment() {
                                 else {""}
                             listItemAdapter.notifyDataSetChanged()
                         }
+                    } else if(response.code() == 403){
+                        Log.i("response followers", getString(R.string.request_limit_exceeded))
                     }
                 }
 
@@ -223,12 +227,13 @@ class SearchFragment : Fragment() {
                 override fun onResponse(
                     call: Call<User>, response: Response<User>
                 ) {
-                    Log.i("response location", "" + response.code())
                     if (response.code() == 200) {
                         if (response.body()?.location?.isNotEmpty() == true) {
                             item.location = response.body()?.location!!
                             listItemAdapter.notifyDataSetChanged()
                         }
+                    }else if(response.code() == 403){
+                        Log.i("response location", getString(R.string.request_limit_exceeded))
                     }
                 }
 

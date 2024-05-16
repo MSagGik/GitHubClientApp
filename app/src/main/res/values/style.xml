@@ -81,6 +81,10 @@
         <item name="android:textColor">@color/turquoise_200</item>
     </style>
 
+    <style name="RepositoryName" parent="BaseNickname">
+        <item name="android:textColor">@color/turquoise_800</item>
+    </style>
+
     <style name="BaseSubscribers">
         <item name="android:fontFamily">@font/roboto_light</item>
         <item name="android:textFontWeight">300</item>
@@ -91,6 +95,10 @@
         <item name="android:textColor">@color/turquoise_200</item>
     </style>
 
+    <style name="RepositoryMetadata" parent="BaseSubscribers">
+        <item name="android:textColor">@color/turquoise_800</item>
+    </style>
+
     <style name="BaseLocation">
         <item name="android:fontFamily">@font/roboto_regular</item>
         <item name="android:textFontWeight">400</item>
@@ -99,6 +107,21 @@
 
     <style name="Location" parent="BaseLocation">
         <item name="android:textColor">@color/turquoise_200</item>
+    </style>
+
+    <style name="RepositoryDescription" parent="BaseLocation">
+        <item name="android:fontFamily">@font/roboto_black_italic</item>
+        <item name="android:textColor">@color/turquoise_800</item>
+    </style>
+
+    <style name="BaseLanguage">
+        <item name="android:fontFamily">@font/roboto_bold_italic</item>
+        <item name="android:textFontWeight">400</item>
+        <item name="android:textSize">@dimen/text_16</item>
+    </style>
+
+    <style name="Language" parent="BaseLanguage">
+        <item name="android:textColor">@color/turquoise_800</item>
     </style>
 
 </resources>

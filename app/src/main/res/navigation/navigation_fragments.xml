@@ -30,9 +30,9 @@
     </fragment>
     <fragment
         android:id="@+id/userFragment"
-        android:name="com.msaggik.githubclientapp.view.fragments.UserFragment"
+        android:name="com.msaggik.githubclientapp.view.fragments.ItemFragment"
         android:label="fragment_user"
-        tools:layout="@layout/fragment_user" >
+        tools:layout="@layout/fragment_item" >
         <action
             android:id="@+id/action_userFragment_to_searchFragment"
             app:destination="@id/searchFragment" />

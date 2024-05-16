@@ -3,8 +3,6 @@ package com.msaggik.githubclientapp.util.adapter
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
-import android.os.Build
-import android.os.Bundle
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +12,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.navigation.fragment.findNavController
 
 import androidx.recyclerview.widget.RecyclerView
@@ -34,7 +31,7 @@ class ListItemAdapter (private val fragment: Fragment, private val itemListAdd: 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_user_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
         return ItemViewHolder(fragment, view)
     }
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {

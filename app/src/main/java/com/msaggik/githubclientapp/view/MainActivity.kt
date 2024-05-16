@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
                     }
                     var flag = true
                     for (fragment in navigationHostFragment.childFragmentManager.fragments) {
-                        if (fragment.javaClass.simpleName.equals("UserFragment")) {
+                        if (fragment.javaClass.simpleName.equals("ItemFragment")) {
                             flag = false
                             findNavController(R.id.fragmentContainerView).navigate(R.id.userFragment)
                         }

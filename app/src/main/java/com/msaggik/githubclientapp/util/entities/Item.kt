@@ -23,7 +23,7 @@ data class Item(
     @SerializedName("received_events_url") var receivedEventsUrl: String? = null,
     @SerializedName("type") var type: String? = null,
     @SerializedName("site_admin") var siteAdmin: Boolean? = null,
-    @SerializedName("score") var score: Int? = null,
+    var score: Int? = null,
     var numberFollowers: String? = null,
     var location: String? = null
 )

@@ -13,4 +13,11 @@
     <string name="text_placeholder_one">Search didn\'t find anyone</string>
     <string name="text_placeholder_two">Server problems</string>
     <string name="default_value">—</string>
+    <string name="list_of_repositories">List of repositories</string>
+    <string name="item">Item</string>
+    <string name="repository_name">Repository name</string>
+    <string name="repository_metadata">Repository metadata</string>
+    <string name="repository_description">Repository description</string>
+    <string name="language">Language</string>
+    <string name="request_limit_exceeded">Request limit exceeded, please try again later (http code 403)</string>
 </resources>

@@ -31,12 +31,29 @@
         <item name="android:textColor">@color/turquoise_900</item>
     </style>
 
+    <style name="RepositoryName" parent="BaseNickname">
+        <item name="android:textColor">@color/turquoise_400</item>
+    </style>
+
     <style name="Subscribers" parent="BaseSubscribers">
         <item name="android:textColor">@color/turquoise_900</item>
     </style>
 
+    <style name="RepositoryMetadata" parent="BaseSubscribers">
+        <item name="android:textColor">@color/turquoise_400</item>
+    </style>
+
     <style name="Location" parent="BaseLocation">
         <item name="android:textColor">@color/turquoise_900</item>
+    </style>
+
+    <style name="RepositoryDescription" parent="BaseLocation">
+        <item name="android:fontFamily">@font/roboto_black_italic</item>
+        <item name="android:textColor">@color/turquoise_400</item>
+    </style>
+
+    <style name="Language" parent="BaseLanguage">
+        <item name="android:textColor">@color/turquoise_400</item>
     </style>
 
 </resources>
