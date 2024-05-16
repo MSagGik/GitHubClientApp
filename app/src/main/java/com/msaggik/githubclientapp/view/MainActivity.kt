@@ -20,10 +20,10 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var navigationController: NavController
     private lateinit var navigationHostFragment: NavHostFragment
-    private var isOnSetting = false
     private lateinit var layoutSetting: FrameLayout
     private lateinit var switchTheme: SwitchMaterial
     private lateinit var fragmentContainer: FragmentContainerView
+    private var isOnSetting = false
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

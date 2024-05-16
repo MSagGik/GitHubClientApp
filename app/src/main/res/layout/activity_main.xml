@@ -58,7 +58,7 @@
             app:track="@drawable/shape_track_switch" />
 
         <TextView
-            style="@style/HeaderTree"
+            style="@style/HeaderTwo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dimen_111"

@@ -40,14 +40,65 @@
         <item name="android:textColor">@color/turquoise_900</item>
     </style>
 
-    <style name="BaseHeaderTree">
+    <style name="BaseHeaderTwo">
         <item name="android:fontFamily">@font/roboto_light</item>
         <item name="android:textFontWeight">300</item>
         <item name="android:textSize">@dimen/text_23</item>
     </style>
 
-    <style name="HeaderTree" parent="BaseHeaderTree">
+    <style name="HeaderTwo" parent="BaseHeaderTwo">
         <item name="android:textColor">@color/turquoise_800</item>
+    </style>
+
+    <style name="BaseHeaderTree">
+        <item name="android:fontFamily">@font/roboto_light</item>
+        <item name="android:textFontWeight">300</item>
+        <item name="android:textSize">@dimen/text_16</item>
+    </style>
+
+    <style name="HeaderTree" parent="BaseHeaderTree">
+        <item name="android:textColor">@color/turquoise_900</item>
+    </style>
+
+    <style name="BaseEditTextSearch">
+        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:textFontWeight">300</item>
+        <item name="android:textSize">@dimen/text_19</item>
+    </style>
+
+    <style name="EditTextSearch" parent="BaseEditTextSearch">
+        <item name="android:textColor">@color/turquoise_100</item>
+        <item name="android:textColorHint">@color/turquoise_300</item>
+    </style>
+
+    <style name="BaseNickname">
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:textFontWeight">500</item>
+        <item name="android:textSize">@dimen/text_21</item>
+    </style>
+
+    <style name="Nickname" parent="BaseNickname">
+        <item name="android:textColor">@color/turquoise_200</item>
+    </style>
+
+    <style name="BaseSubscribers">
+        <item name="android:fontFamily">@font/roboto_light</item>
+        <item name="android:textFontWeight">300</item>
+        <item name="android:textSize">@dimen/text_14</item>
+    </style>
+
+    <style name="Subscribers" parent="BaseSubscribers">
+        <item name="android:textColor">@color/turquoise_200</item>
+    </style>
+
+    <style name="BaseLocation">
+        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:textFontWeight">400</item>
+        <item name="android:textSize">@dimen/text_14</item>
+    </style>
+
+    <style name="Location" parent="BaseLocation">
+        <item name="android:textColor">@color/turquoise_200</item>
     </style>
 
 </resources>

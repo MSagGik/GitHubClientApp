@@ -3,7 +3,14 @@
     <string name="profile">Profile</string>
     <string name="search">Search</string>
     <string name="setting">Setting</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="application_theme">application theme</string>
+    <string name="user_search_for_collaboration">user search for collaboration</string>
+    <string name="nickname">Nickname</string>
+    <string name="_100_subscribers">100 subscribers</string>
+    <string name="location">location</string>
+    <string name="server_response_status">Server response status</string>
+    <string name="text_placeholder_one">Search didn\'t find anyone</string>
+    <string name="text_placeholder_two">Server problems</string>
+    <string name="default_value">—</string>
 </resources>

@@ -10,7 +10,7 @@
 
     <item android:id="@+id/search"
         android:title="@string/search"
-        android:icon="@drawable/ic_search" />
+        android:icon="@drawable/ic_search_a" />
 
     <item android:id="@+id/settings"
         android:title="@string/setting"

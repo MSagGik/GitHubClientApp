@@ -1,14 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.fragments.SearchFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        style="@style/HeaderTree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_16"
+        android:layout_marginTop="@dimen/text_19"
+        android:text="@string/user_search_for_collaboration" />
+
+    <EditText
+        android:id="@+id/search_item"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="@dimen/dimen_16"
+        android:layout_marginTop="@dimen/dimen_43"
+        android:ems="10"
+        android:lines="1"
+        android:background="@drawable/shape_search"
+        android:inputType="text"
+        android:hint="@string/search"
+        android:drawableStart="@drawable/ic_search_b"
+        android:paddingStart="@dimen/dimen_8"
+        style="@style/EditTextSearch"
+        android:drawablePadding="@dimen/dimen_8"
+        tools:ignore="RtlSymmetry"
+        android:imeOptions="actionDone"
+        android:singleLine="true"/>
+
+    <ImageView
+        android:id="@+id/clear_button"
+        android:layout_width="@dimen/dimen_21"
+        android:layout_height="@dimen/dimen_21"
+        android:layout_marginTop="@dimen/dimen_58"
+        android:layout_gravity="top|end"
+        android:layout_marginEnd="@dimen/dimen_30"
+        android:background="@null"
+        app:srcCompat="@drawable/ic_clear"
+        android:visibility="gone" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_item"
+        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_marginTop="@dimen/dimen_114"
+        android:layout_marginHorizontal="@dimen/dimen_16"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+    <TextView
+        android:id="@+id/text_placeholder"
+        android:visibility="gone"
+        style="@style/HeaderOne"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/server_response_status" />
 
 </FrameLayout>
