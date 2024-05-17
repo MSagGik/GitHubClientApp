@@ -41,4 +41,10 @@
     <string name="default_" translatable="false">default</string>
     <string name="last_commit">last commit</string>
     <string name="request_limit_exceeded">Request limit exceeded, please try again later (http code 403)</string>
+    <string name="test_authentication">Test authentication</string>
+    <string name="login" translatable="false">login</string>
+    <string name="password" translatable="false">password</string>
+    <string name="login_in" translatable="false">login in</string>
+    <string name="application_user_agreement_https_docs_github_com">Information about the application and user agreement \n https://docs.github.com</string>
+    <string name="uri_application_information" translatable="false">https://docs.github.com</string>
 </resources>

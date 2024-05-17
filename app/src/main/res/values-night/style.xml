@@ -27,6 +27,16 @@
         <item name="android:textColorHint">@color/turquoise_700</item>
     </style>
 
+    <style name="TextAgreement" parent="BaseTextAgreement">
+        <item name="android:textColor">@color/turquoise_300</item>
+    </style>
+
+    <style name="Button" parent="BaseEditTextSearch">
+        <item name="android:textColor">@color/turquoise_900</item>
+        <item name="android:backgroundTint">@color/turquoise_500</item>
+        <item name="backgroundTint">@color/turquoise_500</item>
+    </style>
+
     <style name="Nickname" parent="BaseNickname">
         <item name="android:textColor">@color/turquoise_900</item>
     </style>

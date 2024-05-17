@@ -26,4 +26,6 @@
     <string name="russian">俄语</string>
     <string name="chinese">中国人</string>
     <string name="language_selection">语言选择</string>
+    <string name="test_authentication">测试身份验证</string>
+    <string name="application_user_agreement_https_docs_github_com">有关发行和发行说明的信息 文档 \n https://docs.github.com</string>
 </resources>

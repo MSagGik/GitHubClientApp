@@ -26,4 +26,6 @@
     <string name="russian">Russian</string>
     <string name="chinese">Chinese</string>
     <string name="language_selection">language selection</string>
+    <string name="test_authentication">Test authentication</string>
+    <string name="application_user_agreement_https_docs_github_com">Information about the application and user agreement \n https://docs.github.com</string>
 </resources>

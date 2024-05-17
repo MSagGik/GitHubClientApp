@@ -1,14 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.fragments.AuthenticationFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:layout_width="174dp"
+        android:layout_height="93dp"
+        android:layout_marginTop="@dimen/dimen_43"
+        android:layout_gravity="center_horizontal"
+        android:background="@null"
+        app:srcCompat="@drawable/ic_info_app_b"
+        android:visibility="visible" />
+
     <TextView
+        style="@style/HeaderTree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="19dp"
+        android:layout_marginBottom="@dimen/dimen_136"
+        android:text="@string/test_authentication" />
+
+    <EditText
+        android:id="@+id/input_login"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="61dp"
+        android:layout_marginHorizontal="@dimen/dimen_16"
+        android:ems="10"
+        android:lines="1"
+        android:layout_marginBottom="88dp"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/shape_search"
+        android:inputType="text"
+        android:hint="@string/login"
+        android:paddingStart="@dimen/dimen_23"
+        style="@style/EditTextSearch"
+        tools:ignore="RtlSymmetry"
+        android:imeOptions="actionDone"
+        android:singleLine="true"/>
+
+    <EditText
+        android:id="@+id/input_password"
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
+        android:layout_marginHorizontal="@dimen/dimen_16"
+        android:ems="10"
+        android:lines="1"
+        android:layout_marginBottom="9dp"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/shape_search"
+        android:inputType="textPassword"
+        android:hint="@string/password"
+        android:paddingStart="@dimen/dimen_23"
+        style="@style/EditTextSearch"
+        android:imeOptions="actionDone"
+        android:singleLine="true"
+        tools:ignore="RtlSymmetry" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
+        android:background="@drawable/shape_button"
+        android:layout_marginHorizontal="@dimen/dimen_16"
+        android:layout_gravity="center"
+        style="@style/Button"
+        android:layout_marginTop="@dimen/dimen_70"
+        android:text="@string/login_in" />
+
 
 </FrameLayout>

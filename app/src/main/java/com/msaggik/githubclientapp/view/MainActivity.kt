@@ -1,11 +1,14 @@
 package com.msaggik.githubclientapp.view
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.FrameLayout
 import android.widget.Spinner
+import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentContainerView
@@ -26,6 +29,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var switchTheme: SwitchMaterial
     private lateinit var fragmentContainer: FragmentContainerView
     private lateinit var languageSelection: Spinner
+    private lateinit var applicationUserAgreement: TextView
     private var isOnSetting = false
 
     @SuppressLint("MissingInflatedId")
@@ -37,6 +41,7 @@ class MainActivity : AppCompatActivity() {
         switchTheme = findViewById(R.id.switchTheme)
         fragmentContainer = findViewById(R.id.fragmentContainerView)
         languageSelection = findViewById(R.id.language_selection)
+        applicationUserAgreement = findViewById(R.id.application_user_agreement)
         navigationHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         navigationController = navigationHostFragment.navController
@@ -44,18 +49,20 @@ class MainActivity : AppCompatActivity() {
         val bottomNavigationViewMenu =
             findViewById<BottomNavigationView>(R.id.bottom_navigation_menu)
 
-        // настройки темы
+        // theme settings
         switchTheme.setChecked((applicationContext as App).getApplicationTheme())
 
         switchTheme.setOnCheckedChangeListener { _, checked ->
             (applicationContext as App).setThemeSharedPreferences(checked)
         }
 
-        // настройки языка
+        // language settings
         val languageValues = resources.getStringArray(R.array.language_selection_values)
-        val languageSelectionAdapter = LanguageAdapter(this,
+        val languageSelectionAdapter = LanguageAdapter(
+            this,
             resources.getIntArray(R.array.language_selection),
-            resources.getStringArray(R.array.language_selection))
+            resources.getStringArray(R.array.language_selection)
+        )
         languageSelection.adapter = languageSelectionAdapter
 
         languageSelection.setSelection(languageValues.indexOf((applicationContext as App).getApplicationLanguage()))
@@ -75,6 +82,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        // setting up application information
+        applicationUserAgreement.setOnClickListener(listener)
 
         // bottom navigation bar
         bottomNavigationViewMenu.setOnItemSelectedListener { item ->
@@ -152,6 +161,18 @@ class MainActivity : AppCompatActivity() {
         } else {
             layoutSetting.visibility = View.GONE
             fragmentContainer.visibility = View.VISIBLE
+        }
+    }
+
+    val listener: View.OnClickListener = object : View.OnClickListener {
+        override fun onClick(p0: View?) {
+            when (p0?.id) {
+                R.id.application_user_agreement -> {
+                    val agreementUri: Uri = Uri.parse(getString(R.string.uri_application_information))
+                    val agreementIntent = Intent(Intent.ACTION_VIEW, agreementUri)
+                    startActivity(agreementIntent)
+                }
+            }
         }
     }
 

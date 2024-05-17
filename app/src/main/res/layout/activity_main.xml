@@ -24,7 +24,7 @@
         android:id="@+id/layoutSetting"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,6 +79,17 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="241dp"
             android:layout_marginTop="@dimen/dimen_237"/>
+
+        <TextView
+            android:id="@+id/application_user_agreement"
+            style="@style/TextAgreement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginHorizontal="@dimen/dimen_35"
+            android:layout_marginBottom="@dimen/dimen_50"
+            android:text="@string/application_user_agreement_https_docs_github_com" />
 
     </FrameLayout>
 

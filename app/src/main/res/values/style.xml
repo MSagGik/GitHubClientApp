@@ -71,6 +71,22 @@
         <item name="android:textColorHint">@color/turquoise_300</item>
     </style>
 
+    <style name="BaseTextAgreement">
+        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:textFontWeight">300</item>
+        <item name="android:textSize">@dimen/text_21</item>
+    </style>
+
+    <style name="TextAgreement" parent="BaseTextAgreement">
+        <item name="android:textColor">@color/turquoise_800</item>
+    </style>
+
+    <style name="Button" parent="BaseEditTextSearch">
+        <item name="android:textColor">@color/turquoise_100</item>
+        <item name="android:backgroundTint">@color/turquoise_800</item>
+        <item name="backgroundTint">@color/turquoise_800</item>
+    </style>
+
     <style name="BaseNickname">
         <item name="android:fontFamily">@font/roboto_medium</item>
         <item name="android:textFontWeight">500</item>
