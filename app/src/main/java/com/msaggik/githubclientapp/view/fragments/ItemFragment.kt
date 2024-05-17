@@ -72,7 +72,7 @@ class ItemFragment : Fragment() {
         listViewRepository.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
-        listRepositoryAdapter = ListRepositoryAdapter(listRepos)
+        listRepositoryAdapter = ListRepositoryAdapter(this, listRepos)
         listViewRepository.adapter = listRepositoryAdapter
 
         sharedPreferences = context.applicationContext.getSharedPreferences(ITEM_PREFERENCES, Context.MODE_PRIVATE)
@@ -129,6 +129,7 @@ class ItemFragment : Fragment() {
                                 listRepositoryAdapter.notifyDataSetChanged()
                             }
                             if (listRepos.isEmpty()) {
+                                if(countPage > 1) countPage--
                                 listViewRepository.visibility = View.GONE
                                 textPlaceholder.text = getString(R.string.text_placeholder_one)
                                 textPlaceholder.visibility = View.VISIBLE

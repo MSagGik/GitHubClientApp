@@ -11,21 +11,25 @@
     <TextView
         android:id="@+id/repository_name"
         style="@style/RepositoryName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/dimen_136"
+        app:layout_constraintHorizontal_weight="3"
         android:background="@null"
         android:text="@string/repository_name"
+        android:layout_marginEnd="@dimen/dimen_8"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/repository_language"/>
 
     <TextView
         android:id="@+id/repository_language"
         style="@style/RepositoryDescription"
-        android:layout_width="@dimen/dimen_102"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        app:layout_constraintHorizontal_weight="1"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/repository_name"
         android:layout_gravity="end|top"
         android:layout_marginTop="@dimen/dimen_4"
         android:gravity="end"

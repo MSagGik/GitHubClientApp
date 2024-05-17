@@ -19,5 +19,12 @@
     <string name="repository_metadata">Repository metadata</string>
     <string name="repository_description">Repository description</string>
     <string name="language">Language</string>
+    <string name="follower">follower</string>
+    <string name="followers">followers</string>
+    <string name="more_than_99_followers">more than 99 followers</string>
+    <string name="forks">forks</string>
+    <string name="stars">stars</string>
+    <string name="default_">default</string>
+    <string name="last_commit">last commit</string>
     <string name="request_limit_exceeded">Request limit exceeded, please try again later (http code 403)</string>
 </resources>

@@ -202,8 +202,9 @@ class SearchFragment : Fragment() {
                         if (response.body()?.isNotEmpty() == true) {
                             listFollowers.addAll(response.body()!!)
                             item.numberFollowers =
-                                if(listFollowers.size == 1) {"${listFollowers.size} follower"}
-                                else if(listFollowers.size > 1){"${listFollowers.size} followers"}
+                                if(listFollowers.size == 1) {"${listFollowers.size} ${getString(R.string.follower)}"}
+                                else if(listFollowers.size in 2..99){"${listFollowers.size} ${getString(R.string.followers)}"}
+                                else if(listFollowers.size > 99){getString(R.string.more_than_99_followers)}
                                 else {""}
                             listItemAdapter.notifyDataSetChanged()
                         }

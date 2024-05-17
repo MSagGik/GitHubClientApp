@@ -6,13 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.msaggik.githubclientapp.R
 import com.msaggik.githubclientapp.util.entities.Repos
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-class ListRepositoryAdapter (private val reposListAdd: List<Repos>) : RecyclerView.Adapter<ListRepositoryAdapter.RepositoryViewHolder> () {
+class ListRepositoryAdapter (private val fragment: Fragment, private val reposListAdd: List<Repos>) : RecyclerView.Adapter<ListRepositoryAdapter.RepositoryViewHolder> () {
     private var reposList = reposListAdd
 
     fun setReposList(reposListUpdate: List<Repos>) {
@@ -21,7 +22,7 @@ class ListRepositoryAdapter (private val reposListAdd: List<Repos>) : RecyclerVi
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepositoryViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item_repository, parent, false)
-        return RepositoryViewHolder(view)
+        return RepositoryViewHolder(fragment, view)
     }
     override fun onBindViewHolder(holder: RepositoryViewHolder, position: Int) {
         holder.bind(reposList[position])
@@ -30,7 +31,7 @@ class ListRepositoryAdapter (private val reposListAdd: List<Repos>) : RecyclerVi
         return reposList.size
     }
 
-    class RepositoryViewHolder(repositoryView: View): RecyclerView.ViewHolder(repositoryView) {
+    class RepositoryViewHolder(private val fragment: Fragment, repositoryView: View): RecyclerView.ViewHolder(repositoryView) {
 
         private val repositoryName: TextView = repositoryView.findViewById(R.id.repository_name)
         private val repositoryLanguage: TextView = repositoryView.findViewById(R.id.repository_language)
@@ -45,10 +46,14 @@ class ListRepositoryAdapter (private val reposListAdd: List<Repos>) : RecyclerVi
                 SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").parse(it)
                     ?.let { SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(it) }
             }
-            repositoryMetadata.text = "${model.forksCount} forks, " +
-                    "${model.stargazersCount} stars, default " +
-                    "${model.defaultBranch}, last commit ${date}"
-            repositoryDescription.text = model.description.toString()
+            repositoryMetadata.text = "${model.forksCount} ${fragment.getString(R.string.forks)}, " +
+                    "${model.stargazersCount} ${fragment.getString(R.string.stars)}, ${fragment.getString(R.string.default_)} " +
+                    "${model.defaultBranch}, ${fragment.getString(R.string.last_commit)} ${date}"
+            repositoryDescription.text = if (model.description != null) {
+                model.description.toString()
+            } else {
+                ""
+            }
         }
     }
 }

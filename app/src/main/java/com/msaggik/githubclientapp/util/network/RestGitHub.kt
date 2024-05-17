@@ -22,7 +22,7 @@ interface RestGitHub {
     fun showUser(@Path("user") user: String): Call<User>
 
 //    @GET("/users/{user}/repos?sort=updated")
-    @GET("/users/{user}/repos?sort=updated&per_page=5")
+    @GET("/users/{user}/repos?sort=updated&per_page=10")
     fun showRepositories(@Path("user") user: String, @Query("page") page: Int): Call<List<Repos>>
 
 }
