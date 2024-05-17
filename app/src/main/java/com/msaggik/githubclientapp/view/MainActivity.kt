@@ -3,7 +3,9 @@ package com.msaggik.githubclientapp.view
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
+import android.widget.AdapterView
 import android.widget.FrameLayout
+import android.widget.Spinner
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentContainerView
@@ -14,7 +16,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.msaggik.githubclientapp.R
 import com.msaggik.githubclientapp.di.App
-import kotlin.properties.Delegates
+import com.msaggik.githubclientapp.view.adapter.LanguageAdapter
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,7 +25,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var layoutSetting: FrameLayout
     private lateinit var switchTheme: SwitchMaterial
     private lateinit var fragmentContainer: FragmentContainerView
+    private lateinit var languageSelection: Spinner
     private var isOnSetting = false
+
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,17 +36,45 @@ class MainActivity : AppCompatActivity() {
         layoutSetting = findViewById(R.id.layoutSetting)
         switchTheme = findViewById(R.id.switchTheme)
         fragmentContainer = findViewById(R.id.fragmentContainerView)
-        navigationHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        languageSelection = findViewById(R.id.language_selection)
+        navigationHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         navigationController = navigationHostFragment.navController
 
         val bottomNavigationViewMenu =
             findViewById<BottomNavigationView>(R.id.bottom_navigation_menu)
 
+        // настройки темы
         switchTheme.setChecked((applicationContext as App).getApplicationTheme())
 
         switchTheme.setOnCheckedChangeListener { _, checked ->
             (applicationContext as App).setThemeSharedPreferences(checked)
         }
+
+        // настройки языка
+        val languageValues = resources.getStringArray(R.array.language_selection_values)
+        val languageSelectionAdapter = LanguageAdapter(this,
+            resources.getIntArray(R.array.language_selection),
+            resources.getStringArray(R.array.language_selection))
+        languageSelection.adapter = languageSelectionAdapter
+
+        languageSelection.setSelection(languageValues.indexOf((applicationContext as App).getApplicationLanguage()))
+
+        languageSelection.onItemSelectedListener = object :
+            AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                (applicationContext as App).setLanguageSharedPreferences(languageValues[position])
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+            }
+        }
+
 
         // bottom navigation bar
         bottomNavigationViewMenu.setOnItemSelectedListener { item ->
@@ -63,9 +95,10 @@ class MainActivity : AppCompatActivity() {
                             findNavController(R.id.fragmentContainerView).navigate(R.id.profileFragment)
                         }
                     }
-                    if(flag) findNavController(R.id.fragmentContainerView).navigate(R.id.authenticationFragment)
+                    if (flag) findNavController(R.id.fragmentContainerView).navigate(R.id.authenticationFragment)
                     true
                 }
+
                 R.id.search -> {
                     isOnSetting = false
                     visibleSetting(isOnSetting)
@@ -81,14 +114,16 @@ class MainActivity : AppCompatActivity() {
                             findNavController(R.id.fragmentContainerView).navigate(R.id.userFragment)
                         }
                     }
-                    if(flag) findNavController(R.id.fragmentContainerView).navigate(R.id.searchFragment)
+                    if (flag) findNavController(R.id.fragmentContainerView).navigate(R.id.searchFragment)
                     true
                 }
+
                 R.id.settings -> {
                     isOnSetting = true
                     visibleSetting(isOnSetting)
                     true
                 }
+
                 else -> false
             }
         }
@@ -111,7 +146,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun visibleSetting(checked: Boolean) {
-        if(checked) {
+        if (checked) {
             layoutSetting.visibility = View.VISIBLE
             fragmentContainer.visibility = View.GONE
         } else {

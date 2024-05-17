@@ -12,12 +12,7 @@ import com.msaggik.githubclientapp.model.entities.item.repositories.Repos
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-class ListRepositoryAdapter (private val fragment: Fragment, private val reposListAdd: List<Repos>) : RecyclerView.Adapter<ListRepositoryAdapter.RepositoryViewHolder> () {
-    private var reposList = reposListAdd
-
-    fun setReposList(reposListUpdate: List<Repos>) {
-        reposList = reposListUpdate
-    }
+class ListRepositoryAdapter (private val fragment: Fragment, private val reposList: List<Repos>) : RecyclerView.Adapter<ListRepositoryAdapter.RepositoryViewHolder> () {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepositoryViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item_repository, parent, false)

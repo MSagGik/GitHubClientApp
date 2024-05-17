@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GitHubClientApp</string>
+    <string name="profile">Профиль</string>
+    <string name="search">Поиск</string>
+    <string name="setting">Настойки</string>
+    <string name="application_theme">тема приложения</string>
+    <string name="user_search_for_collaboration">поиск пользователей</string>
+    <string name="nickname">Логин</string>
+    <string name="_100_subscribers">100 подписчиков</string>
+    <string name="location">локация</string>
+    <string name="server_response_status">Статус ответа сервера</string>
+    <string name="text_placeholder_one">Поиск никого не нашел</string>
+    <string name="text_placeholder_two">Проблемы с сервером</string>
+    <string name="list_of_repositories">Список репозиториев</string>
+    <string name="repository_name">Имя репозитория</string>
+    <string name="repository_metadata">Метаданные репозитория</string>
+    <string name="repository_description">Описание репозитория</string>
+    <string name="language">Язык</string>
+    <string name="follower">"подписчик "</string>
+    <string name="followers">"подписчики "</string>
+    <string name="more_than_99_followers">более 99 подписчиков</string>
+    <string name="last_commit">крайний коммит</string>
+    <string name="request_limit_exceeded">Превышен лимит запросов. Повторите попытку позже (http-код 403).</string>
+    <string name="english">Английский</string>
+    <string name="russian">Русский</string>
+    <string name="chinese">Китайский</string>
+    <string name="language_selection">выбор языка</string>
+</resources>

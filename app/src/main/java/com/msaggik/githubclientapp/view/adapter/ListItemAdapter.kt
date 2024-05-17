@@ -23,12 +23,7 @@ import com.msaggik.githubclientapp.model.entities.itemsearch.Item
 
 private const val ITEM_PREFERENCES = "item_preferences"
 private const val ITEM_KEY = "item_key"
-class ListItemAdapter (private val fragment: Fragment, private val itemListAdd: List<Item>) : RecyclerView.Adapter<ListItemAdapter.ItemViewHolder> () {
-    private var itemList = itemListAdd
-
-    fun setItemList(itemListUpdate: List<Item>) {
-        itemList = itemListUpdate
-    }
+class ListItemAdapter (private val fragment: Fragment, private val itemList: List<Item>) : RecyclerView.Adapter<ListItemAdapter.ItemViewHolder> () {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)

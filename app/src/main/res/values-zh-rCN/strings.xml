@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GitHubClientApp</string>
+    <string name="profile">轮廓</string>
+    <string name="search">搜索</string>
+    <string name="setting">酊剂</string>
+    <string name="application_theme">应用主题</string>
+    <string name="user_search_for_collaboration">用户搜索协作</string>
+    <string name="nickname">昵称</string>
+    <string name="_100_subscribers">100 名订阅者</string>
+    <string name="location">地点</string>
+    <string name="server_response_status">服务器响应状态</string>
+    <string name="text_placeholder_one">搜索没有找到人</string>
+    <string name="text_placeholder_two">服务器问题</string>
+    <string name="list_of_repositories">存储库列表</string>
+    <string name="repository_name">存储库名称</string>
+    <string name="repository_metadata">存储库元数据</string>
+    <string name="repository_description">存储库描述</string>
+    <string name="language">语言</string>
+    <string name="follower">订户</string>
+    <string name="followers">订户</string>
+    <string name="more_than_99_followers">超过 99 名订阅者</string>
+    <string name="last_commit">最后提交</string>
+    <string name="request_limit_exceeded">请求超出限制，请稍后重试（http 代码 403）</string>
+    <string name="english">英语</string>
+    <string name="russian">俄语</string>
+    <string name="chinese">中国人</string>
+    <string name="language_selection">语言选择</string>
+</resources>
