@@ -1,4 +1,4 @@
-package com.msaggik.githubclientapp.util.entities
+package com.msaggik.githubclientapp.model.entities.itemsearch
 
 import com.google.gson.annotations.SerializedName
 

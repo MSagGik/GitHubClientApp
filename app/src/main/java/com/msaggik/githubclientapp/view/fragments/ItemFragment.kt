@@ -16,15 +16,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.msaggik.githubclientapp.R
-import com.msaggik.githubclientapp.util.adapter.ListRepositoryAdapter
-import com.msaggik.githubclientapp.util.entities.Item
-import com.msaggik.githubclientapp.util.entities.Repos
-import com.msaggik.githubclientapp.util.network.RestGitHub
+import com.msaggik.githubclientapp.di.App
+import com.msaggik.githubclientapp.view.adapter.ListRepositoryAdapter
+import com.msaggik.githubclientapp.model.entities.itemsearch.Item
+import com.msaggik.githubclientapp.model.entities.item.repositories.Repos
+import com.msaggik.githubclientapp.model.network.RestGitHub
+import com.msaggik.githubclientapp.model.network.RestGitHubModule
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 
 private const val ITEM_PREFERENCES = "item_preferences"
 private const val ITEM_KEY = "item_key"
@@ -45,15 +48,8 @@ class ItemFragment : Fragment() {
     private lateinit var listRepositoryAdapter: ListRepositoryAdapter
 
     private val gitHubBaseURL = "https://api.github.com"
-    private val retrofit = Retrofit.Builder()
-        .baseUrl(gitHubBaseURL)
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
+    private val retrofit = RestGitHubModule.createRetrofitObject(gitHubBaseURL)
     private val gitHubRestService = retrofit.create(RestGitHub::class.java)
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

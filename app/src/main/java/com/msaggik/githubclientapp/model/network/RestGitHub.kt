@@ -1,10 +1,9 @@
-package com.msaggik.githubclientapp.util.network
+package com.msaggik.githubclientapp.model.network
 
-import com.msaggik.githubclientapp.util.entities.Follower
-import com.msaggik.githubclientapp.util.entities.Item
-import com.msaggik.githubclientapp.util.entities.Repos
-import com.msaggik.githubclientapp.util.entities.ResponseServerUsers
-import com.msaggik.githubclientapp.util.entities.User
+import com.msaggik.githubclientapp.model.entities.item.follower.Follower
+import com.msaggik.githubclientapp.model.entities.item.repositories.Repos
+import com.msaggik.githubclientapp.model.entities.itemsearch.ResponseServerUsers
+import com.msaggik.githubclientapp.model.entities.item.User
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -21,8 +20,7 @@ interface RestGitHub {
     @GET("/users/{user}")
     fun showUser(@Path("user") user: String): Call<User>
 
-//    @GET("/users/{user}/repos?sort=updated")
-    @GET("/users/{user}/repos?sort=updated&per_page=10")
+    @GET("/users/{user}/repos?sort=updated&per_page=5")
     fun showRepositories(@Path("user") user: String, @Query("page") page: Int): Call<List<Repos>>
 
 }

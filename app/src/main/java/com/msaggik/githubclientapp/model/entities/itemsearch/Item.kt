@@ -1,8 +1,10 @@
-package com.msaggik.githubclientapp.util.entities
+package com.msaggik.githubclientapp.model.entities.itemsearch
 
+import android.os.Parcelable
+import androidx.versionedparcelable.ParcelField
 import com.google.gson.annotations.SerializedName
 
-data class User(
+data class Item(
     @SerializedName("login") var login: String? = null,
     @SerializedName("id") var id: Int? = null,
     @SerializedName("node_id") var nodeId: String? = null,
@@ -21,18 +23,7 @@ data class User(
     @SerializedName("received_events_url") var receivedEventsUrl: String? = null,
     @SerializedName("type") var type: String? = null,
     @SerializedName("site_admin") var siteAdmin: Boolean? = null,
-    @SerializedName("name") var name: String? = null,
-    @SerializedName("company") var company: String? = null,
-    @SerializedName("blog") var blog: String? = null,
-    @SerializedName("location") var location: String? = null,
-    @SerializedName("email") var email: String? = null,
-    @SerializedName("hireable") var hireable: String? = null,
-    @SerializedName("bio") var bio: String? = null,
-    @SerializedName("twitter_username") var twitterUsername: String? = null,
-    @SerializedName("public_repos") var publicRepos: Int? = null,
-    @SerializedName("public_gists") var publicGists: Int? = null,
-    @SerializedName("followers") var followers: Int? = null,
-    @SerializedName("following") var following: Int? = null,
-    @SerializedName("created_at") var createdAt: String? = null,
-    @SerializedName("updated_at") var updatedAt: String? = null
+    var score: Int? = null,
+    var numberFollowers: String? = null,
+    var location: String? = null
 )

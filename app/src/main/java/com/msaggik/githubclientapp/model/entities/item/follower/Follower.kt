@@ -1,10 +1,8 @@
-package com.msaggik.githubclientapp.util.entities
+package com.msaggik.githubclientapp.model.entities.item.follower
 
-import android.os.Parcelable
-import androidx.versionedparcelable.ParcelField
 import com.google.gson.annotations.SerializedName
 
-data class Item(
+data class Follower(
     @SerializedName("login") var login: String? = null,
     @SerializedName("id") var id: Int? = null,
     @SerializedName("node_id") var nodeId: String? = null,
@@ -22,8 +20,5 @@ data class Item(
     @SerializedName("events_url") var eventsUrl: String? = null,
     @SerializedName("received_events_url") var receivedEventsUrl: String? = null,
     @SerializedName("type") var type: String? = null,
-    @SerializedName("site_admin") var siteAdmin: Boolean? = null,
-    var score: Int? = null,
-    var numberFollowers: String? = null,
-    var location: String? = null
+    @SerializedName("site_admin") var siteAdmin: Boolean? = null
 )

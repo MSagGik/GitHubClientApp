@@ -1,4 +1,4 @@
-package com.msaggik.githubclientapp.util.adapter
+package com.msaggik.githubclientapp.view.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -19,7 +19,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.google.gson.Gson
 import com.msaggik.githubclientapp.R
-import com.msaggik.githubclientapp.util.entities.Item
+import com.msaggik.githubclientapp.model.entities.itemsearch.Item
 
 private const val ITEM_PREFERENCES = "item_preferences"
 private const val ITEM_KEY = "item_key"
@@ -64,7 +64,8 @@ class ListItemAdapter (private val fragment: Fragment, private val itemListAdd: 
             location.text = model.location
             listItemSearch.setOnClickListener(View.OnClickListener {
                 if(fragment.context != null) {
-                    sharedPreferences = fragment.context!!.applicationContext.getSharedPreferences(ITEM_PREFERENCES,
+                    sharedPreferences = fragment.context!!.applicationContext.getSharedPreferences(
+                        ITEM_PREFERENCES,
                         AppCompatActivity.MODE_PRIVATE)
                     val itemJson = Gson().toJson(model)
                     sharedPreferences.edit().putString(ITEM_KEY, itemJson).apply()

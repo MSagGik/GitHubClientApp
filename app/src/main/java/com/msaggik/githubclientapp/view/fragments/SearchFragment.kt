@@ -19,17 +19,17 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.msaggik.githubclientapp.R
-import com.msaggik.githubclientapp.util.adapter.ListItemAdapter
-import com.msaggik.githubclientapp.util.entities.Follower
-import com.msaggik.githubclientapp.util.entities.Item
-import com.msaggik.githubclientapp.util.entities.ResponseServerUsers
-import com.msaggik.githubclientapp.util.entities.User
-import com.msaggik.githubclientapp.util.network.RestGitHub
+import com.msaggik.githubclientapp.view.adapter.ListItemAdapter
+import com.msaggik.githubclientapp.model.entities.item.follower.Follower
+import com.msaggik.githubclientapp.model.entities.itemsearch.Item
+import com.msaggik.githubclientapp.model.entities.itemsearch.ResponseServerUsers
+import com.msaggik.githubclientapp.model.entities.item.User
+import com.msaggik.githubclientapp.model.network.RestGitHub
+import com.msaggik.githubclientapp.model.network.RestGitHubModule
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -50,15 +50,8 @@ class SearchFragment : Fragment() {
     private lateinit var listItemAdapter: ListItemAdapter
 
     private val gitHubBaseURL = "https://api.github.com"
-    private val retrofit = Retrofit.Builder()
-        .baseUrl(gitHubBaseURL)
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
+    private val retrofit = RestGitHubModule.createRetrofitObject(gitHubBaseURL)
     private val gitHubRestService = retrofit.create(RestGitHub::class.java)
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -137,7 +130,6 @@ class SearchFragment : Fragment() {
     }
 
     private fun keyGone() {
-        // убирание клавиатуры с экрана
         val keyboardOnOff =
             context.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
         keyboardOnOff?.hideSoftInputFromWindow(searchItem.windowToken, 0)

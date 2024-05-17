@@ -1,15 +1,14 @@
-package com.msaggik.githubclientapp.util.adapter
+package com.msaggik.githubclientapp.view.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.msaggik.githubclientapp.R
-import com.msaggik.githubclientapp.util.entities.Repos
+import com.msaggik.githubclientapp.model.entities.item.repositories.Repos
 import java.text.SimpleDateFormat
 import java.util.Locale
 
