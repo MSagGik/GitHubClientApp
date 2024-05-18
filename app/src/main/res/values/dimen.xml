@@ -4,8 +4,10 @@
     <dimen name="dimen_4">4dp</dimen>
     <dimen name="dimen_7">7dp</dimen>
     <dimen name="dimen_8">8dp</dimen>
+    <dimen name="dimen_9">9dp</dimen>
     <dimen name="dimen_12">12dp</dimen>
     <dimen name="dimen_16">16dp</dimen>
+    <dimen name="dimen_19">19dp</dimen>
     <dimen name="dimen_20">20dp</dimen>
     <dimen name="dimen_21">21dp</dimen>
     <dimen name="dimen_23">23dp</dimen>

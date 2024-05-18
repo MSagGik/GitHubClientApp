@@ -21,4 +21,5 @@ local.properties
 app/release/*
 *.keystore
 vcs.xml
+.secret_properties.xml
 #.gitignore
