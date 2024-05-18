@@ -1,4 +1,4 @@
-package com.msaggik.githubclientapp.view.fragments
+package com.msaggik.githubclientapp.view.fragments.nooauth
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -33,8 +33,6 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class SearchFragment : Fragment() {
 

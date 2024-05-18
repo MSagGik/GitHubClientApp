@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragments.AuthenticationFragment">
+    tools:context=".view.fragments.oauth.AuthenticationFragment">
 
     <ImageView
         android:layout_width="174dp"
@@ -25,7 +25,7 @@
         android:text="@string/test_authentication" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/button_login_in"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_61"
         android:background="@drawable/shape_button"

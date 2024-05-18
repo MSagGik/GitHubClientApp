@@ -47,4 +47,7 @@
     <string name="login_in" translatable="false">login in</string>
     <string name="application_user_agreement_https_docs_github_com">Information about the application and user agreement \n https://docs.github.com</string>
     <string name="uri_application_information" translatable="false">https://docs.github.com</string>
+    <string name="authentication_failed_try_again">Authentication failed, try again</string>
+    <string name="incorrect_application_settings">Incorrect application settings are used during authentication, contact the developers</string>
+    <string name="login_out">login out</string>
 </resources>

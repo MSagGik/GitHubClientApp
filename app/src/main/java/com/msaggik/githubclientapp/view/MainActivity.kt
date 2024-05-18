@@ -2,13 +2,16 @@ package com.msaggik.githubclientapp.view
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.FrameLayout
 import android.widget.Spinner
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentContainerView
@@ -17,10 +20,19 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.switchmaterial.SwitchMaterial
+import com.google.gson.Gson
 import com.msaggik.githubclientapp.R
 import com.msaggik.githubclientapp.di.App
+import com.msaggik.githubclientapp.model.entities.oauth.Token
+import com.msaggik.githubclientapp.model.network.RestGitHub
+import com.msaggik.githubclientapp.model.network.RestGitHubModule
 import com.msaggik.githubclientapp.view.adapter.LanguageAdapter
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
+private const val OAUTH_PREFERENCES = "oauth_preferences"
+private const val TOKEN_KEY = "token_key"
 class MainActivity : AppCompatActivity() {
 
     private lateinit var navigationController: NavController
@@ -30,9 +42,15 @@ class MainActivity : AppCompatActivity() {
     private lateinit var fragmentContainer: FragmentContainerView
     private lateinit var languageSelection: Spinner
     private lateinit var applicationUserAgreement: TextView
+    private lateinit var oauthPlaceholder: TextView
     private var isOnSetting = false
+    private lateinit var sharedPreferences: SharedPreferences
 
-    @SuppressLint("MissingInflatedId")
+    private val gitHubBaseURL = "https://github.com"
+    private val retrofit = RestGitHubModule.createRetrofitObject(gitHubBaseURL)
+    private val gitHubRestService = retrofit.create(RestGitHub::class.java)
+
+    @SuppressLint("MissingInflatedId", "RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -42,6 +60,7 @@ class MainActivity : AppCompatActivity() {
         fragmentContainer = findViewById(R.id.fragmentContainerView)
         languageSelection = findViewById(R.id.language_selection)
         applicationUserAgreement = findViewById(R.id.application_user_agreement)
+        oauthPlaceholder = findViewById(R.id.oauth_placeholder)
         navigationHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         navigationController = navigationHostFragment.navController
@@ -99,12 +118,17 @@ class MainActivity : AppCompatActivity() {
                     }
                     var flag = true
                     for (fragment in navigationHostFragment.childFragmentManager.fragments) {
-                        if (fragment.javaClass.simpleName.equals("ProfileFragment")) {
+                        if (fragment.javaClass.simpleName.equals("OauthItemFragment")) {
                             flag = false
-                            findNavController(R.id.fragmentContainerView).navigate(R.id.profileFragment)
+                            findNavController(R.id.fragmentContainerView).navigate(R.id.oauthItemFragment)
+                        }else if (fragment.javaClass.simpleName.equals("OauthSearchFragment")) {
+                            flag = false
+                            findNavController(R.id.fragmentContainerView).navigate(R.id.oauthSearchFragment)
                         }
                     }
-                    if (flag) findNavController(R.id.fragmentContainerView).navigate(R.id.authenticationFragment)
+                    if (flag) {
+                        findNavController(R.id.fragmentContainerView).navigate(R.id.authenticationFragment)
+                    }
                     true
                 }
 
@@ -120,7 +144,7 @@ class MainActivity : AppCompatActivity() {
                     for (fragment in navigationHostFragment.childFragmentManager.fragments) {
                         if (fragment.javaClass.simpleName.equals("ItemFragment")) {
                             flag = false
-                            findNavController(R.id.fragmentContainerView).navigate(R.id.userFragment)
+                            findNavController(R.id.fragmentContainerView).navigate(R.id.itemFragment)
                         }
                     }
                     if (flag) findNavController(R.id.fragmentContainerView).navigate(R.id.searchFragment)
@@ -174,6 +198,67 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Receiving data after authentication
+        val url: Uri? = intent.data
+        intent.data = null
+        if(url != null) {
+            val code = url.toString().substringAfter("code=")
+            val clientId = getString(R.string.client_id)
+            val clientSecret = getString(R.string.client_secret)
+            getToken(clientId, clientSecret, code)
+            placeholderOffMessage()
+        }
+    }
+
+    private fun getToken(clientId: String, clientSecret: String, code: String) {
+
+        if (!clientId.isNullOrEmpty() && !clientSecret.isNullOrEmpty() && !code.isNullOrEmpty()) {
+            gitHubRestService.getAccessToken(clientId = clientId, clientSecret = clientSecret, code = code).enqueue(object :
+                Callback<Token> {
+                @SuppressLint("NotifyDataSetChanged")
+                override fun onResponse(
+                    call: Call<Token>,
+                    response: Response<Token>
+                ) {
+                    Log.i("response repositories", "" + response.code())
+                    if (response.code() == 200) {
+                        if (response.body()?.accessToken?.isNotEmpty() == true) {
+                            placeholderOffMessage()
+                            sharedPreferences = applicationContext.getSharedPreferences(OAUTH_PREFERENCES, MODE_PRIVATE)
+                            sharedPreferences.edit().putString(TOKEN_KEY, "Bearer ${response.body()?.accessToken}").apply()
+                            findNavController(R.id.fragmentContainerView).navigate(R.id.oauthSearchFragment)
+                        } else {
+                            placeholderOnMessage(getString(R.string.incorrect_application_settings))
+                        }
+                    } else if(response.code() == 403){
+                        placeholderOnMessage(getString(R.string.request_limit_exceeded))
+                    } else {
+                        placeholderOnMessage("${getString(R.string.text_placeholder_two)}\nHTTP code ${response.code()}")
+                    }
+                }
+
+                override fun onFailure(call: Call<Token>, t: Throwable) {
+                    placeholderOnMessage(getString(R.string.text_placeholder_two))
+                    Toast.makeText(applicationContext, t.message.toString(), Toast.LENGTH_LONG).show()
+                    Log.e("showRepositories", t.message.toString())
+                }
+            })
+        } else {
+            placeholderOnMessage(getString(R.string.incorrect_application_settings))
+        }
+    }
+
+    private fun placeholderOnMessage(message: String) {
+        oauthPlaceholder.text = message
+        oauthPlaceholder.visibility = View.VISIBLE
+    }
+
+    private fun placeholderOffMessage() {
+        oauthPlaceholder.visibility = View.GONE
     }
 
     companion object {

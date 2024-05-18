@@ -28,4 +28,6 @@
     <string name="language_selection">выбор языка</string>
     <string name="test_authentication">Тестовая аутентификация</string>
     <string name="application_user_agreement_https_docs_github_com">Информация о приложении и пользовательском соглашении об использовании \n https://docs.github.com</string>
+    <string name="authentication_failed_try_again">Аутентификация не прошла, попробуйте ещё раз</string>
+    <string name="incorrect_application_settings">При аутентификации используются некорректные настройки приложения, обратитесь к разработчикам</string>
 </resources>

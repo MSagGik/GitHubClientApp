@@ -4,37 +4,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_fragment"
     app:startDestination="@id/authenticationFragment">
-
     <fragment
         android:id="@+id/authenticationFragment"
-        android:name="com.msaggik.githubclientapp.view.fragments.AuthenticationFragment"
+        android:name="com.msaggik.githubclientapp.view.fragments.oauth.AuthenticationFragment"
         android:label="fragment_authentication"
         tools:layout="@layout/fragment_authentication" >
         <action
-            android:id="@+id/action_authenticationFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
+            android:id="@+id/action_authenticationFragment_to_oauthSearchFragment"
+            app:destination="@id/oauthSearchFragment" />
     </fragment>
     <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.msaggik.githubclientapp.view.fragments.ProfileFragment"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        android:id="@+id/oauthSearchFragment"
+        android:name="com.msaggik.githubclientapp.view.fragments.oauth.OauthSearchFragment"
+        android:label="fragment_search_oauth"
+        tools:layout="@layout/fragment_search_oauth" >
+        <action
+            android:id="@+id/action_oauthSearchFragment_to_authenticationFragment"
+            app:destination="@id/authenticationFragment" />
+        <action
+            android:id="@+id/action_oauthSearchFragment_to_oauthItemFragment"
+            app:destination="@id/oauthItemFragment" />
+    </fragment>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.msaggik.githubclientapp.view.fragments.SearchFragment"
+        android:name="com.msaggik.githubclientapp.view.fragments.nooauth.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" >
         <action
-            android:id="@+id/action_searchFragment_to_userFragment"
-            app:destination="@id/userFragment" />
+            android:id="@+id/action_searchFragment_to_itemFragment"
+            app:destination="@id/itemFragment" />
     </fragment>
     <fragment
-        android:id="@+id/userFragment"
-        android:name="com.msaggik.githubclientapp.view.fragments.ItemFragment"
-        android:label="fragment_user"
+        android:id="@+id/itemFragment"
+        android:name="com.msaggik.githubclientapp.view.fragments.nooauth.ItemFragment"
+        android:label="fragment_item"
         tools:layout="@layout/fragment_item" >
         <action
-            android:id="@+id/action_userFragment_to_searchFragment"
+            android:id="@+id/action_itemFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/oauthItemFragment"
+        android:name="com.msaggik.githubclientapp.view.fragments.oauth.OauthItemFragment"
+        android:label="fragment_item_oauth"
+        tools:layout="@layout/fragment_item_oauth" >
+        <action
+            android:id="@+id/action_oauthItemFragment_to_oauthSearchFragment"
+            app:destination="@id/oauthSearchFragment" />
     </fragment>
 </navigation>

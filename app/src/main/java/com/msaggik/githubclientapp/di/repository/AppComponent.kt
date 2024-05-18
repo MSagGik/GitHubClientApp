@@ -1,7 +1,5 @@
 package com.msaggik.githubclientapp.di.repository
 
-import com.msaggik.githubclientapp.view.fragments.ItemFragment
-import com.msaggik.githubclientapp.view.fragments.SearchFragment
 import dagger.Component
 import javax.inject.Singleton
 

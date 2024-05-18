@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragments.nooauth.ItemFragment">
+    tools:context=".view.fragments.oauth.OauthItemFragment">
 
     <TextView
         android:id="@+id/nickname"
@@ -23,27 +23,18 @@
         android:layout_marginTop="@dimen/dimen_50"
         android:text="@string/list_of_repositories" />
 
-    <ImageButton
-        android:id="@+id/buttonForward"
+    <Button
+        android:id="@+id/button_login_out"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dimen_43"
+        android:background="@drawable/shape_button"
         android:layout_gravity="top|end"
+        android:gravity="center"
         android:layout_marginTop="@dimen/dimen_16"
-        android:layout_marginEnd="@dimen/dimen_16"
-        android:background="@null"
-        android:backgroundTint="@null"
-        android:src="@drawable/ic_button_forward" />
-
-    <ImageButton
-        android:id="@+id/buttonBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top|end"
-        android:layout_marginTop="@dimen/dimen_16"
-        android:layout_marginEnd="@dimen/dimen_79"
-        android:background="@null"
-        android:backgroundTint="@null"
-        android:src="@drawable/ic_button_back" />
+        android:layout_marginHorizontal="@dimen/dimen_16"
+        android:textSize="@dimen/text_14"
+        style="@style/Button"
+        android:text="@string/login_out" />
 
     <View
         android:id="@+id/view"
