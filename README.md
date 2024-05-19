@@ -14,7 +14,7 @@
 <img src="media/ui_ux_desigh_light_theme.png"/>
 </p>
 
-В проекте отсутствует файл с персональными данными разработчика res/values/secret_properties.xml
+В проекте отсутствует файл с персональными данными разработчика `res/values/secret_properties.xml`
 ```
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
