@@ -1,4 +1,4 @@
-package com.msaggik.githubclientapp.view.fragments.nooauth
+package com.msaggik.githubclientapp.view.fragments.search
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
@@ -20,17 +21,19 @@ import com.msaggik.githubclientapp.view.adapter.ListRepositoryAdapter
 import com.msaggik.githubclientapp.model.entities.itemsearch.Item
 import com.msaggik.githubclientapp.model.entities.item.repositories.Repos
 import com.msaggik.githubclientapp.model.network.RestGitHub
-import com.msaggik.githubclientapp.model.network.RestGitHubModule
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 private const val ITEM_PREFERENCES = "item_preferences"
+private const val OAUTH_PREFERENCES = "oauth_preferences"
 private const val ITEM_KEY = "item_key"
+private const val TOKEN_KEY = "token_key"
 class ItemFragment : Fragment() {
 
     private lateinit var context: Context
     private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var token: String
     private var item = Item()
     private var countPage = 1
 
@@ -44,7 +47,7 @@ class ItemFragment : Fragment() {
     private lateinit var listRepositoryAdapter: ListRepositoryAdapter
 
     private val gitHubBaseURL = "https://api.github.com"
-    private val retrofit = RestGitHubModule.createRetrofitObject(gitHubBaseURL)
+    private val retrofit = RestGitHub.createRetrofitObject(gitHubBaseURL)
     private val gitHubRestService = retrofit.create(RestGitHub::class.java)
 
     override fun onCreateView(
@@ -54,6 +57,10 @@ class ItemFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_item, container, false)
 
         context = view.context
+        sharedPreferences = context.applicationContext.getSharedPreferences(OAUTH_PREFERENCES, AppCompatActivity.MODE_PRIVATE)
+        token = sharedPreferences.getString(TOKEN_KEY, null).toString()
+        sharedPreferences = context.applicationContext.getSharedPreferences(ITEM_PREFERENCES, Context.MODE_PRIVATE)
+        val jsonItem = sharedPreferences.getString(ITEM_KEY, null)
 
         nickname = view.findViewById(R.id.nickname)
         listViewRepository = view.findViewById(R.id.list_repository)
@@ -66,9 +73,6 @@ class ItemFragment : Fragment() {
 
         listRepositoryAdapter = ListRepositoryAdapter(this, listRepos)
         listViewRepository.adapter = listRepositoryAdapter
-
-        sharedPreferences = context.applicationContext.getSharedPreferences(ITEM_PREFERENCES, Context.MODE_PRIVATE)
-        val jsonItem = sharedPreferences.getString(ITEM_KEY, null)
 
         if(jsonItem != null) {
             item = Gson().fromJson(jsonItem, Item::class.java)
@@ -106,7 +110,12 @@ class ItemFragment : Fragment() {
         listRepos.clear()
         Log.i("login", "" + item.login)
         if (item.login?.isNotEmpty() == true) {
-            gitHubRestService.showRepositories(item.login!!, page).enqueue(object : Callback<List<Repos>> {
+            val serviceShowRepositories = if(token.length > 14) {
+                gitHubRestService.showRepositoriesOauth(token, item.login!!, page, 10)
+            } else {
+                gitHubRestService.showRepositories(item.login!!, page, 10)
+            }
+            serviceShowRepositories.enqueue(object : Callback<List<Repos>> {
                     @SuppressLint("NotifyDataSetChanged")
                     override fun onResponse(
                         call: Call<List<Repos>>,
@@ -115,36 +124,38 @@ class ItemFragment : Fragment() {
                         Log.i("response repositories", "" + response.code())
                         if (response.code() == 200) {
                             if (response.body()?.isNotEmpty() == true) {
-                                listViewRepository.visibility = View.VISIBLE
-                                textPlaceholder.visibility = View.GONE
+                                placeholderOffMessage()
                                 listRepos.addAll(response.body()!!)
                                 listRepositoryAdapter.notifyDataSetChanged()
                             }
                             if (listRepos.isEmpty()) {
                                 if(countPage > 1) countPage--
-                                listViewRepository.visibility = View.GONE
-                                textPlaceholder.text = getString(R.string.text_placeholder_one)
-                                textPlaceholder.visibility = View.VISIBLE
+                                placeholderOnMessage(getString(R.string.text_placeholder_one))
                             }
                         } else if(response.code() == 403){
-                            listViewRepository.visibility = View.GONE
-                            textPlaceholder.text = getString(R.string.request_limit_exceeded)
-                            textPlaceholder.visibility = View.VISIBLE
+                            placeholderOnMessage(getString(R.string.request_limit_exceeded))
                         } else {
-                            listViewRepository.visibility = View.GONE
-                            textPlaceholder.text = getString(R.string.text_placeholder_two)
-                            textPlaceholder.visibility = View.VISIBLE
+                            placeholderOnMessage(getString(R.string.text_placeholder_two))
                         }
                     }
 
                     override fun onFailure(call: Call<List<Repos>>, t: Throwable) {
-                        listViewRepository.visibility = View.GONE
-                        textPlaceholder.text = getString(R.string.text_placeholder_two)
-                        textPlaceholder.visibility = View.VISIBLE
+                        placeholderOnMessage(getString(R.string.text_placeholder_two))
                         Toast.makeText(context, t.message.toString(), Toast.LENGTH_LONG).show()
                         Log.e("showRepositories", t.message.toString())
                     }
                 })
         }
+    }
+
+    private fun placeholderOnMessage(message: String) {
+        listViewRepository.visibility = View.GONE
+        textPlaceholder.text = message
+        textPlaceholder.visibility = View.VISIBLE
+    }
+
+    private fun placeholderOffMessage() {
+        listViewRepository.visibility = View.VISIBLE
+        textPlaceholder.visibility = View.GONE
     }
 }

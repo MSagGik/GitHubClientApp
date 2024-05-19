@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragments.oauth.AuthenticationFragment">
+    tools:context=".view.fragments.profile.AuthenticationFragment">
 
     <ImageView
         android:layout_width="174dp"

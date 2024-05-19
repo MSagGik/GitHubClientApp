@@ -20,12 +20,10 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.switchmaterial.SwitchMaterial
-import com.google.gson.Gson
 import com.msaggik.githubclientapp.R
 import com.msaggik.githubclientapp.di.App
 import com.msaggik.githubclientapp.model.entities.oauth.Token
 import com.msaggik.githubclientapp.model.network.RestGitHub
-import com.msaggik.githubclientapp.model.network.RestGitHubModule
 import com.msaggik.githubclientapp.view.adapter.LanguageAdapter
 import retrofit2.Call
 import retrofit2.Callback
@@ -47,7 +45,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var sharedPreferences: SharedPreferences
 
     private val gitHubBaseURL = "https://github.com"
-    private val retrofit = RestGitHubModule.createRetrofitObject(gitHubBaseURL)
+    private val retrofit = RestGitHub.createRetrofitObject(gitHubBaseURL)
     private val gitHubRestService = retrofit.create(RestGitHub::class.java)
 
     @SuppressLint("MissingInflatedId", "RestrictedApi")
@@ -118,12 +116,9 @@ class MainActivity : AppCompatActivity() {
                     }
                     var flag = true
                     for (fragment in navigationHostFragment.childFragmentManager.fragments) {
-                        if (fragment.javaClass.simpleName.equals("OauthItemFragment")) {
+                        if (fragment.javaClass.simpleName.equals("ProfileFragment")) {
                             flag = false
-                            findNavController(R.id.fragmentContainerView).navigate(R.id.oauthItemFragment)
-                        }else if (fragment.javaClass.simpleName.equals("OauthSearchFragment")) {
-                            flag = false
-                            findNavController(R.id.fragmentContainerView).navigate(R.id.oauthSearchFragment)
+                            findNavController(R.id.fragmentContainerView).navigate(R.id.profileFragment)
                         }
                     }
                     if (flag) {
@@ -230,7 +225,7 @@ class MainActivity : AppCompatActivity() {
                             placeholderOffMessage()
                             sharedPreferences = applicationContext.getSharedPreferences(OAUTH_PREFERENCES, MODE_PRIVATE)
                             sharedPreferences.edit().putString(TOKEN_KEY, "Bearer ${response.body()?.accessToken}").apply()
-                            findNavController(R.id.fragmentContainerView).navigate(R.id.oauthSearchFragment)
+                            findNavController(R.id.fragmentContainerView).navigate(R.id.profileFragment)
                         } else {
                             placeholderOnMessage(getString(R.string.incorrect_application_settings))
                         }
@@ -239,6 +234,12 @@ class MainActivity : AppCompatActivity() {
                     } else {
                         placeholderOnMessage("${getString(R.string.text_placeholder_two)}\nHTTP code ${response.code()}")
                     }
+//                    Log.e("onResponsegetToken", response?.body().toString())
+//                    Log.e("codegetToken", response?.code().toString())
+//                    Log.e("messagegetToken", response?.message().toString())
+//                    Log.e("errorBodygetToken", response?.errorBody().toString())
+//                    Log.e("headersgetToken", response?.headers().toString())
+//                    Log.e("rawgetToken", response?.raw().toString())
                 }
 
                 override fun onFailure(call: Call<Token>, t: Throwable) {

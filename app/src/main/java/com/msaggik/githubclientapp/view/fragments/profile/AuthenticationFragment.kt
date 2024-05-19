@@ -1,4 +1,4 @@
-package com.msaggik.githubclientapp.view.fragments.oauth
+package com.msaggik.githubclientapp.view.fragments.profile
 
 import android.annotation.SuppressLint
 import android.content.Context

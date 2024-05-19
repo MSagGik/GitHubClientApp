@@ -30,4 +30,8 @@
     <string name="application_user_agreement_https_docs_github_com">Information about the application and user agreement \n https://docs.github.com</string>
     <string name="authentication_failed_try_again">Authentication failed, try again</string>
     <string name="incorrect_application_settings">Incorrect application settings are used during authentication, contact the developers</string>
+    <string name="logout_was_successful">Logout was successful</string>
+    <string name="failed_to_log_out_of_account">Failed to log out of account</string>
+    <string name="company">company</string>
+    <string name="public_repositories">public repositories</string>
 </resources>

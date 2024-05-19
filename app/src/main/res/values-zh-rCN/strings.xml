@@ -30,4 +30,8 @@
     <string name="application_user_agreement_https_docs_github_com">有关发行和发行说明的信息 文档 \n https://docs.github.com</string>
     <string name="authentication_failed_try_again">认证失败，请重试</string>
     <string name="incorrect_application_settings">身份验证过程中使用了不正确的应用程序设置，请联系开发人员</string>
+    <string name="logout_was_successful">退出成功</string>
+    <string name="failed_to_log_out_of_account">无法退出账户</string>
+    <string name="company">公司</string>
+    <string name="public_repositories">公共存储库</string>
 </resources>

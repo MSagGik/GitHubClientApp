@@ -49,5 +49,13 @@
     <string name="uri_application_information" translatable="false">https://docs.github.com</string>
     <string name="authentication_failed_try_again">Authentication failed, try again</string>
     <string name="incorrect_application_settings">Incorrect application settings are used during authentication, contact the developers</string>
-    <string name="login_out">login out</string>
+    <string name="login_out" translatable="false">login out</string>
+    <string name="logout_was_successful">Logout was successful</string>
+    <string name="failed_to_log_out_of_account">Failed to log out of account</string>
+    <string name="company">company</string>
+    <string name="following" translatable="false">following</string>
+    <string name="number_public_repositories" translatable="false">number public repositories</string>
+    <string name="followers_profile" translatable="false">followers</string>
+    <string name="following_profile" translatable="false">following</string>
+    <string name="public_repositories">public repositories</string>
 </resources>

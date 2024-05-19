@@ -1,7 +1,8 @@
-package com.msaggik.githubclientapp.view.fragments.nooauth
+package com.msaggik.githubclientapp.view.fragments.search
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -16,6 +17,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.msaggik.githubclientapp.R
@@ -25,7 +27,6 @@ import com.msaggik.githubclientapp.model.entities.itemsearch.Item
 import com.msaggik.githubclientapp.model.entities.itemsearch.ResponseServerUsers
 import com.msaggik.githubclientapp.model.entities.item.User
 import com.msaggik.githubclientapp.model.network.RestGitHub
-import com.msaggik.githubclientapp.model.network.RestGitHubModule
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -34,9 +35,13 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+private const val OAUTH_PREFERENCES = "oauth_preferences"
+private const val TOKEN_KEY = "token_key"
 class SearchFragment : Fragment() {
 
     private lateinit var context: Context
+    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var token: String
 
     private lateinit var searchItem: EditText
     private lateinit var clearButton: ImageView
@@ -48,7 +53,7 @@ class SearchFragment : Fragment() {
     private lateinit var listItemAdapter: ListItemAdapter
 
     private val gitHubBaseURL = "https://api.github.com"
-    private val retrofit = RestGitHubModule.createRetrofitObject(gitHubBaseURL)
+    private val retrofit = RestGitHub.createRetrofitObject(gitHubBaseURL)
     private val gitHubRestService = retrofit.create(RestGitHub::class.java)
 
     override fun onCreateView(
@@ -58,6 +63,8 @@ class SearchFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_search, container, false)
 
         context = view.context
+        sharedPreferences = context.applicationContext.getSharedPreferences(OAUTH_PREFERENCES, AppCompatActivity.MODE_PRIVATE)
+        token = sharedPreferences.getString(TOKEN_KEY, null).toString()
 
         searchItem = view.findViewById(R.id.search_item)
         clearButton = view.findViewById(R.id.clear_button)
@@ -136,8 +143,12 @@ class SearchFragment : Fragment() {
     private fun searchItems(textSearchRequest: String) {
         listItem.clear()
         if (textSearchRequest.isNotEmpty()) {
-            gitHubRestService.searchItem(textSearchRequest)
-                .enqueue(object : Callback<ResponseServerUsers> {
+            val serviceSearchItem = if(token.length > 14) {
+                gitHubRestService.searchItemOauth(token, textSearchRequest)
+            } else {
+                gitHubRestService.searchItem(textSearchRequest)
+            }
+            serviceSearchItem.enqueue(object : Callback<ResponseServerUsers> {
                     @SuppressLint("NotifyDataSetChanged")
                     override fun onResponse(
                         call: Call<ResponseServerUsers>,
@@ -146,43 +157,50 @@ class SearchFragment : Fragment() {
                         if (response.code() == 200) {
                             listItem.clear()
                             if (response.body()?.items?.isNotEmpty() == true) {
-                                listViewItem.visibility = View.VISIBLE
-                                textPlaceholder.visibility = View.GONE
+                                placeholderOffMessage()
                                 listItem.addAll(response.body()?.items!!)
                             listItemAdapter.notifyDataSetChanged()
                             }
                             if (listItem.isEmpty()) {
-                                listViewItem.visibility = View.GONE
-                                textPlaceholder.text = getString(R.string.text_placeholder_one)
-                                textPlaceholder.visibility = View.VISIBLE
+                                placeholderOnMessage(getString(R.string.text_placeholder_one))
                             }
                         } else if(response.code() == 403){
-                            listViewItem.visibility = View.GONE
-                            textPlaceholder.text = getString(R.string.request_limit_exceeded)
-                            textPlaceholder.visibility = View.VISIBLE
+                            placeholderOnMessage(getString(R.string.request_limit_exceeded))
                         } else {
-                            listViewItem.visibility = View.GONE
-                            textPlaceholder.text = getString(R.string.text_placeholder_two)
-                            textPlaceholder.visibility = View.VISIBLE
+                            placeholderOnMessage(getString(R.string.text_placeholder_two))
                             Toast.makeText(context, response.code().toString(), Toast.LENGTH_LONG)
                                 .show()
                         }
                     }
 
                     override fun onFailure(call: Call<ResponseServerUsers>, t: Throwable) {
-                        listViewItem.visibility = View.GONE
-                        textPlaceholder.text = getString(R.string.text_placeholder_two)
-                        textPlaceholder.visibility = View.VISIBLE
+                        placeholderOnMessage(getString(R.string.text_placeholder_two))
                         Toast.makeText(context, t.message.toString(), Toast.LENGTH_LONG).show()
                     }
                 })
         }
     }
 
+    private fun placeholderOnMessage(message: String) {
+        listViewItem.visibility = View.GONE
+        textPlaceholder.text = message
+        textPlaceholder.visibility = View.VISIBLE
+    }
+
+    private fun placeholderOffMessage() {
+        listViewItem.visibility = View.VISIBLE
+        textPlaceholder.visibility = View.GONE
+    }
+
     private fun showFollowers(item: Item) {
         var listFollowers: MutableList<Follower> = mutableListOf()
         if (item.login?.isNotEmpty() == true) {
-            gitHubRestService.showFollowers(item.login!!).enqueue(object : Callback<List<Follower>> {
+            val serviceShowFollowers = if(token.length > 14) {
+                gitHubRestService.showFollowersOauth(token, item.login!!)
+            } else {
+                gitHubRestService.showFollowers(item.login!!)
+            }
+            serviceShowFollowers.enqueue(object : Callback<List<Follower>> {
                 @SuppressLint("NotifyDataSetChanged")
                 override fun onResponse(
                     call: Call<List<Follower>>,
@@ -212,7 +230,12 @@ class SearchFragment : Fragment() {
 
     private fun showLocation(item: Item) {
         if (item.login?.isNotEmpty() == true) {
-            gitHubRestService.showUser(item.login!!).enqueue(object :
+            val serviceShowUser = if(token.length > 14) {
+                gitHubRestService.showUserOauth(token, item.login!!)
+            } else {
+                gitHubRestService.showUser(item.login!!)
+            }
+            serviceShowUser.enqueue(object :
                 Callback<User> {
                 @SuppressLint("NotifyDataSetChanged")
                 override fun onResponse(

@@ -30,4 +30,8 @@
     <string name="application_user_agreement_https_docs_github_com">Информация о приложении и пользовательском соглашении об использовании \n https://docs.github.com</string>
     <string name="authentication_failed_try_again">Аутентификация не прошла, попробуйте ещё раз</string>
     <string name="incorrect_application_settings">При аутентификации используются некорректные настройки приложения, обратитесь к разработчикам</string>
+    <string name="logout_was_successful">Выход из системы прошел успешно</string>
+    <string name="failed_to_log_out_of_account">Не удалось выйти из аккаунта</string>
+    <string name="company">компания</string>
+    <string name="public_repositories">публичных репозиториев</string>
 </resources>

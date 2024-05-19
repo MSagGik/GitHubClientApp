@@ -65,13 +65,8 @@ class ListItemAdapter (private val fragment: Fragment, private val itemList: Lis
                     val itemJson = Gson().toJson(model)
                     sharedPreferences.edit().putString(ITEM_KEY, itemJson).apply()
                 }
-                if (fragment.javaClass.simpleName.equals("SearchFragment")) {
-                    fragment.findNavController()
-                        .navigate(R.id.action_searchFragment_to_itemFragment)
-                } else if(fragment.javaClass.simpleName.equals("OauthSearchFragment")) {
-                    fragment.findNavController()
-                        .navigate(R.id.action_oauthSearchFragment_to_oauthItemFragment)
-                }
+                fragment.findNavController()
+                    .navigate(R.id.action_searchFragment_to_itemFragment)
             })
         }
 
