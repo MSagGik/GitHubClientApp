@@ -1,5 +1,5 @@
 # GitHubClientApp
-## Пример клиентского приложения [GitHub REST API] (https://docs.github.com/en/rest)
+## Пример клиентского приложения [GitHub REST API](https://docs.github.com/en/rest) (https://docs.github.com/en/rest)
 ## Стек применяемых технологий:
 1. Язык Kotlin
 2. Библиотеки Retrofit, Glide, Gson
@@ -26,8 +26,8 @@
 </resources>
 \```
 
-scheme и host на основе [`<scheme>://<host>:<port><path><pathPrefix>`] (https://developer.android.com/guide/topics/manifest/data-element)
-client_id и client_secret назначаются при регистрации приложения OAuth App в [личном кабинете GitHub] (https://github.com/settings/developers)
+scheme и host на основе [`<scheme>://<host>:<port><path><pathPrefix>`](https://developer.android.com/guide/topics/manifest/data-element) (https://developer.android.com/guide/topics/manifest/data-element)
+client_id и client_secret назначаются при регистрации приложения OAuth App в [личном кабинете GitHub](https://github.com/settings/developers) (https://github.com/settings/developers)
 redirect_url задаётся там же
 
 OAuth аутентификацию и авторизацию с помощью токена можно описать следующей схемой:
