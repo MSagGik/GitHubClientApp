@@ -26,11 +26,13 @@
 </resources>
 ```
 
-scheme и host на основе [`<scheme>://<host>:<port><path><pathPrefix>`](https://developer.android.com/guide/topics/manifest/data-element) (https://developer.android.com/guide/topics/manifest/data-element)
+scheme и host строятся на основе [`<scheme>://<host>:<port><path><pathPrefix>`](https://developer.android.com/guide/topics/manifest/data-element) (https://developer.android.com/guide/topics/manifest/data-element)
+
 client_id и client_secret назначаются при регистрации приложения OAuth App в [личном кабинете GitHub](https://github.com/settings/developers) (https://github.com/settings/developers)
+
 redirect_url задаётся там же
 
-OAuth аутентификацию и авторизацию с помощью токена можно описать следующей схемой:
+*OAuth аутентификацию и авторизацию с помощью токена можно описать следующей схемой:*
 
 <p align="left">
 <img src="media/step_one.png"/>
