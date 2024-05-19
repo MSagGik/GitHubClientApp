@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ViewLine">
+        <item name="android:background">@color/turquoise_900</item>
+    </style>
+
+    <style name="SwitchSettingMaterial">
+        <item name="thumbTint">@color/turquoise_300</item>
+        <item name="trackTint">@color/turquoise_800</item>
+        <item name="android:checked">true</item>
+    </style>
+
+    <style name="HeaderOne" parent="BaseHeaderOne">
+        <item name="android:textColor">@color/turquoise_300</item>
+    </style>
+
+    <style name="HeaderTwo" parent="BaseHeaderTwo">
+        <item name="android:textColor">@color/turquoise_300</item>
+    </style>
+
+    <style name="HeaderTree" parent="BaseHeaderTree">
+        <item name="android:textColor">@color/turquoise_300</item>
+    </style>
+
+    <style name="EditTextSearch" parent="BaseEditTextSearch">
+        <item name="android:textColor">@color/turquoise_900</item>
+        <item name="android:textColorHint">@color/turquoise_700</item>
+    </style>
+
+    <style name="TextAgreement" parent="BaseTextAgreement">
+        <item name="android:textColor">@color/turquoise_300</item>
+    </style>
+
+    <style name="Button" parent="BaseEditTextSearch">
+        <item name="android:textColor">@color/turquoise_900</item>
+        <item name="android:backgroundTint">@color/turquoise_500</item>
+        <item name="backgroundTint">@color/turquoise_500</item>
+    </style>
+
+    <style name="Nickname" parent="BaseNickname">
+        <item name="android:textColor">@color/turquoise_900</item>
+    </style>
+
+    <style name="RepositoryName" parent="BaseNickname">
+        <item name="android:textColor">@color/turquoise_400</item>
+    </style>
+
+    <style name="Subscribers" parent="BaseSubscribers">
+        <item name="android:textColor">@color/turquoise_900</item>
+    </style>
+
+    <style name="RepositoryMetadata" parent="BaseSubscribers">
+        <item name="android:textColor">@color/turquoise_400</item>
+    </style>
+
+    <style name="Location" parent="BaseLocation">
+        <item name="android:textColor">@color/turquoise_900</item>
+    </style>
+
+    <style name="RepositoryDescription" parent="BaseLocation">
+        <item name="android:fontFamily">@font/roboto_black_italic</item>
+        <item name="android:textColor">@color/turquoise_400</item>
+    </style>
+
+    <style name="Language" parent="BaseLanguage">
+        <item name="android:textColor">@color/turquoise_400</item>
+    </style>
+
+</resources>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.fragments.search.ItemFragment">
+
+    <TextView
+        android:id="@+id/nickname"
+        style="@style/HeaderOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_16"
+        android:layout_marginTop="@dimen/dimen_16"
+        android:text="@string/nickname" />
+
+    <TextView
+        style="@style/HeaderTree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_16"
+        android:layout_marginTop="@dimen/dimen_50"
+        android:text="@string/list_of_repositories" />
+
+    <ImageButton
+        android:id="@+id/buttonForward"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="@dimen/dimen_16"
+        android:layout_marginEnd="@dimen/dimen_16"
+        android:background="@null"
+        android:backgroundTint="@null"
+        android:src="@drawable/ic_button_forward" />
+
+    <ImageButton
+        android:id="@+id/buttonBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="@dimen/dimen_16"
+        android:layout_marginEnd="@dimen/dimen_79"
+        android:background="@null"
+        android:backgroundTint="@null"
+        android:src="@drawable/ic_button_back" />
+
+    <View
+        android:id="@+id/view"
+        style="@style/ViewLine"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_1"
+        android:layout_marginTop="@dimen/dimen_78"
+        app:layout_constraintBottom_toBottomOf="@+id/fragmentContainerView" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_repository"
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dimen_79"
+        android:layout_marginHorizontal="@dimen/dimen_16"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+    <TextView
+        android:id="@+id/text_placeholder"
+        android:visibility="gone"
+        style="@style/HeaderOne"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/server_response_status" />
+
+</FrameLayout>

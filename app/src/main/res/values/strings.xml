@@ -1,3 +1,61 @@
 <resources>
-    <string name="app_name">GitHubClientApp</string>
+    <string name="app_name" translatable="false">GitHub Client App</string>
+    <string name="profile">Profile</string>
+    <string name="search">Search</string>
+    <string name="setting">Setting</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="application_theme">application theme</string>
+    <string name="user_search_for_collaboration">user search for collaboration</string>
+    <string name="nickname">Nickname</string>
+    <string name="_100_subscribers">100 subscribers</string>
+    <string name="location">location</string>
+    <string name="server_response_status">Server response status</string>
+    <string name="text_placeholder_one">Search didn\'t find anyone</string>
+    <string name="text_placeholder_two">Server problems</string>
+    <string name="default_value" translatable="false">—</string>
+    <string name="list_of_repositories">List of repositories</string>
+    <string name="item" translatable="false">Item</string>
+    <string name="repository_name">Repository name</string>
+    <string name="repository_metadata">Repository metadata</string>
+    <string name="repository_description">Repository description</string>
+    <string name="language">Language</string>
+    <string name="language_selection">language selection</string>
+    <string name="english">English</string>
+    <string name="russian">Russian</string>
+    <string name="chinese">Chinese</string>
+    <string-array name="language_selection">
+        <item>@string/english</item>
+        <item>@string/russian</item>
+        <item>@string/chinese</item>
+    </string-array>
+    <string-array name="language_selection_values">
+        <item>en-US</item>
+        <item>ru</item>
+        <item>zh-CN</item>
+    </string-array>
+    <string name="follower">follower</string>
+    <string name="followers">followers</string>
+    <string name="more_than_99_followers">more than 99 followers</string>
+    <string name="forks" translatable="false">forks</string>
+    <string name="stars" translatable="false">stars</string>
+    <string name="default_" translatable="false">default</string>
+    <string name="last_commit">last commit</string>
+    <string name="request_limit_exceeded">Request limit exceeded, please try again later (http code 403)</string>
+    <string name="test_authentication">Test authentication</string>
+    <string name="login" translatable="false">login</string>
+    <string name="password" translatable="false">password</string>
+    <string name="login_in" translatable="false">login in</string>
+    <string name="application_user_agreement_https_docs_github_com">Information about the application and user agreement \n https://docs.github.com</string>
+    <string name="uri_application_information" translatable="false">https://docs.github.com</string>
+    <string name="authentication_failed_try_again">Authentication failed, try again</string>
+    <string name="incorrect_application_settings">Incorrect application settings are used during authentication, contact the developers</string>
+    <string name="login_out" translatable="false">login out</string>
+    <string name="logout_was_successful">Logout was successful</string>
+    <string name="failed_to_log_out_of_account">Failed to log out of account</string>
+    <string name="company">company</string>
+    <string name="following" translatable="false">following</string>
+    <string name="number_public_repositories" translatable="false">number public repositories</string>
+    <string name="followers_profile" translatable="false">followers</string>
+    <string name="following_profile" translatable="false">following</string>
+    <string name="public_repositories">public repositories</string>
 </resources>

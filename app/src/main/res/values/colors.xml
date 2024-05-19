@@ -2,4 +2,14 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="turquoise_1000">#FF162529</color>
+    <color name="turquoise_900">#FF2D4952</color>
+    <color name="turquoise_800">#FF436E7A</color>
+    <color name="turquoise_700">#FF5A92A3</color>
+    <color name="turquoise_600">#FF70B7CC</color>
+    <color name="turquoise_500">#FF8DC5D6</color>
+    <color name="turquoise_400">#FFA9D4E0</color>
+    <color name="turquoise_300">#FFC6E2EB</color>
+    <color name="turquoise_200">#FFE2F1F5</color>
+    <color name="turquoise_100">#FFE8F4F7</color>
 </resources>

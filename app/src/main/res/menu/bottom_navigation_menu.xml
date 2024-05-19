@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+<!--    используемые иконки в образовательных/учебных целях взяты с публичного шаблона Material 3 Design Kit-->
+<!--    (ссылка на данный шаблон https://www.figma.com/community/file/1035203688168086460/material-3-design-kit?searchSessionId=lw6v1j14-bzayc096xwk)-->
+
+    <item android:id="@+id/profile"
+        android:title="@string/profile"
+        android:icon="@drawable/ic_account" />
+
+    <item android:id="@+id/search"
+        android:title="@string/search"
+        android:icon="@drawable/ic_search_a" />
+
+    <item android:id="@+id/settings"
+        android:title="@string/setting"
+        android:icon="@drawable/ic_settings" />
+
+</menu>

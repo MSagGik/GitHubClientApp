@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/dimen_16"
+    android:id="@+id/list_item_repos">
+
+    <TextView
+        android:id="@+id/language_name"
+        style="@style/RepositoryName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:text="@string/language"/>
+
+</FrameLayout>

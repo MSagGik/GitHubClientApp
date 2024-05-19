@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.fragments.profile.AuthenticationFragment">
+
+    <ImageView
+        android:layout_width="174dp"
+        android:layout_height="93dp"
+        android:layout_marginTop="@dimen/dimen_43"
+        android:layout_gravity="center_horizontal"
+        android:background="@null"
+        app:srcCompat="@drawable/ic_info_app_b"
+        android:visibility="visible" />
+
+    <TextView
+        style="@style/HeaderTree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="@dimen/dimen_19"
+        android:layout_marginBottom="@dimen/dimen_58"
+        android:text="@string/test_authentication" />
+
+    <Button
+        android:id="@+id/button_login_in"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_61"
+        android:background="@drawable/shape_button"
+        android:layout_marginHorizontal="@dimen/dimen_16"
+        android:layout_gravity="center"
+        style="@style/Button"
+        android:layout_marginBottom="@dimen/dimen_9"
+        android:text="@string/login_in" />
+
+
+</FrameLayout>

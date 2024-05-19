@@ -21,5 +21,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "GitHubClientApp"
 include(":app")
-include(":model")
-include(":viewmodel")
