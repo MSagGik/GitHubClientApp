@@ -108,12 +108,11 @@ class ItemFragment : Fragment() {
 
     private fun repositories(item: Item, page: Int) {
         listRepos.clear()
-        Log.i("login", "" + item.login)
         if (item.login?.isNotEmpty() == true) {
             val serviceShowRepositories = if(token.length > 14) {
-                gitHubRestService.showRepositoriesOauth(token, item.login!!, page, 10)
+                gitHubRestService.showRepositoriesOauth(token, item.login!!, page, 7)
             } else {
-                gitHubRestService.showRepositories(item.login!!, page, 10)
+                gitHubRestService.showRepositories(item.login!!, page, 7)
             }
             serviceShowRepositories.enqueue(object : Callback<List<Repos>> {
                     @SuppressLint("NotifyDataSetChanged")
@@ -121,7 +120,6 @@ class ItemFragment : Fragment() {
                         call: Call<List<Repos>>,
                         response: Response<List<Repos>>
                     ) {
-                        Log.i("response repositories", "" + response.code())
                         if (response.code() == 200) {
                             if (response.body()?.isNotEmpty() == true) {
                                 placeholderOffMessage()
@@ -130,19 +128,18 @@ class ItemFragment : Fragment() {
                             }
                             if (listRepos.isEmpty()) {
                                 if(countPage > 1) countPage--
-                                placeholderOnMessage(getString(R.string.text_placeholder_one))
+                                placeholderOnMessage(context.getString(R.string.text_placeholder_one))
                             }
                         } else if(response.code() == 403){
-                            placeholderOnMessage(getString(R.string.request_limit_exceeded))
+                            placeholderOnMessage(context.getString(R.string.request_limit_exceeded))
                         } else {
-                            placeholderOnMessage(getString(R.string.text_placeholder_two))
+                            placeholderOnMessage(context.getString(R.string.text_placeholder_two))
                         }
                     }
 
                     override fun onFailure(call: Call<List<Repos>>, t: Throwable) {
-                        placeholderOnMessage(getString(R.string.text_placeholder_two))
+                        placeholderOnMessage(context.getString(R.string.text_placeholder_two))
                         Toast.makeText(context, t.message.toString(), Toast.LENGTH_LONG).show()
-                        Log.e("showRepositories", t.message.toString())
                     }
                 })
         }

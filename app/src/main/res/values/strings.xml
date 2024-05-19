@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GitHubClientApp</string>
+    <string name="app_name" translatable="false">GitHub Client App</string>
     <string name="profile">Profile</string>
     <string name="search">Search</string>
     <string name="setting">Setting</string>

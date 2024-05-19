@@ -12,6 +12,12 @@
         <action
             android:id="@+id/action_authenticationFragment_to_profileFragment2"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_authenticationFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_authenticationFragment_to_itemFragment"
+            app:destination="@id/itemFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -21,6 +27,12 @@
         <action
             android:id="@+id/action_searchFragment_to_itemFragment"
             app:destination="@id/itemFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_authenticationFragment"
+            app:destination="@id/authenticationFragment" />
     </fragment>
     <fragment
         android:id="@+id/itemFragment"
@@ -35,5 +47,12 @@
         android:id="@+id/profileFragment"
         android:name="com.msaggik.githubclientapp.view.fragments.profile.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_itemFragment"
+            app:destination="@id/itemFragment" />
+    </fragment>
 </navigation>

@@ -3,6 +3,7 @@ package com.msaggik.githubclientapp.view
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.ActivityInfo
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -43,6 +44,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var oauthPlaceholder: TextView
     private var isOnSetting = false
     private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var token: String
 
     private val gitHubBaseURL = "https://github.com"
     private val retrofit = RestGitHub.createRetrofitObject(gitHubBaseURL)
@@ -52,6 +54,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        sharedPreferences = getSharedPreferences(OAUTH_PREFERENCES, MODE_PRIVATE)
+        token = sharedPreferences.getString(TOKEN_KEY, "").toString()
 
         layoutSetting = findViewById(R.id.layoutSetting)
         switchTheme = findViewById(R.id.switchTheme)
@@ -109,20 +114,10 @@ class MainActivity : AppCompatActivity() {
                 R.id.profile -> {
                     isOnSetting = false
                     visibleSetting(isOnSetting)
-                    navigationController.currentDestination?.id?.let {
-                        findNavController(R.id.fragmentContainerView).popBackStack(
-                            it, true
-                        )
-                    }
-                    var flag = true
-                    for (fragment in navigationHostFragment.childFragmentManager.fragments) {
-                        if (fragment.javaClass.simpleName.equals("ProfileFragment")) {
-                            flag = false
-                            findNavController(R.id.fragmentContainerView).navigate(R.id.profileFragment)
-                        }
-                    }
-                    if (flag) {
+                    if(token.length < 14) {
                         findNavController(R.id.fragmentContainerView).navigate(R.id.authenticationFragment)
+                    } else {
+                        findNavController(R.id.fragmentContainerView).navigate(R.id.profileFragment)
                     }
                     true
                 }
@@ -130,19 +125,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.search -> {
                     isOnSetting = false
                     visibleSetting(isOnSetting)
-                    navigationController.currentDestination?.id?.let {
-                        findNavController(R.id.fragmentContainerView).popBackStack(
-                            it, true
-                        )
-                    }
-                    var flag = true
-                    for (fragment in navigationHostFragment.childFragmentManager.fragments) {
-                        if (fragment.javaClass.simpleName.equals("ItemFragment")) {
-                            flag = false
-                            findNavController(R.id.fragmentContainerView).navigate(R.id.itemFragment)
-                        }
-                    }
-                    if (flag) findNavController(R.id.fragmentContainerView).navigate(R.id.searchFragment)
+                    findNavController(R.id.fragmentContainerView).navigate(R.id.searchFragment)
                     true
                 }
 
@@ -219,12 +202,12 @@ class MainActivity : AppCompatActivity() {
                     call: Call<Token>,
                     response: Response<Token>
                 ) {
-                    Log.i("response repositories", "" + response.code())
                     if (response.code() == 200) {
                         if (response.body()?.accessToken?.isNotEmpty() == true) {
                             placeholderOffMessage()
                             sharedPreferences = applicationContext.getSharedPreferences(OAUTH_PREFERENCES, MODE_PRIVATE)
                             sharedPreferences.edit().putString(TOKEN_KEY, "Bearer ${response.body()?.accessToken}").apply()
+                            token = "Bearer ${response.body()?.accessToken}"
                             findNavController(R.id.fragmentContainerView).navigate(R.id.profileFragment)
                         } else {
                             placeholderOnMessage(getString(R.string.incorrect_application_settings))
@@ -234,18 +217,11 @@ class MainActivity : AppCompatActivity() {
                     } else {
                         placeholderOnMessage("${getString(R.string.text_placeholder_two)}\nHTTP code ${response.code()}")
                     }
-//                    Log.e("onResponsegetToken", response?.body().toString())
-//                    Log.e("codegetToken", response?.code().toString())
-//                    Log.e("messagegetToken", response?.message().toString())
-//                    Log.e("errorBodygetToken", response?.errorBody().toString())
-//                    Log.e("headersgetToken", response?.headers().toString())
-//                    Log.e("rawgetToken", response?.raw().toString())
                 }
 
                 override fun onFailure(call: Call<Token>, t: Throwable) {
                     placeholderOnMessage(getString(R.string.text_placeholder_two))
                     Toast.makeText(applicationContext, t.message.toString(), Toast.LENGTH_LONG).show()
-                    Log.e("showRepositories", t.message.toString())
                 }
             })
         } else {

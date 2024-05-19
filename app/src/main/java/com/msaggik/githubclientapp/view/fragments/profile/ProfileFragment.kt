@@ -93,7 +93,6 @@ class ProfileFragment : Fragment() {
                     call: Call<User>,
                     response: Response<User>
                 ) {
-                    Log.i("response repositories", "" + response.code())
                     if (response.code() == 200) {
                         if (response.body()?.login?.isNotEmpty() == true) {
                             placeholderOffMessage()
@@ -122,7 +121,6 @@ class ProfileFragment : Fragment() {
                 override fun onFailure(call: Call<User>, t: Throwable) {
                     placeholderOnMessage(getString(R.string.text_placeholder_two))
                     Toast.makeText(context, t.message.toString(), Toast.LENGTH_LONG).show()
-                    Log.e("showRepositories", t.message.toString())
                 }
             })
         } else {
@@ -131,7 +129,6 @@ class ProfileFragment : Fragment() {
     }
 
     private fun repositories(token: String, nickname: String) {
-        Log.i("nickname", nickname)
         listRepos.clear()
         gitHubRestService.showRepositoriesOauth(token, nickname, 1, 100).enqueue(object : Callback<List<Repos>> {
             @SuppressLint("NotifyDataSetChanged")
@@ -139,13 +136,10 @@ class ProfileFragment : Fragment() {
                 call: Call<List<Repos>>,
                 response: Response<List<Repos>>
             ) {
-                Log.i("response repos!!!", "" + response.code())
                 if (response.code() == 200) {
                     if (response.body()?.isNotEmpty() == true) {
                         placeholderOffMessage()
-                        Log.i("listRepos", "listRepos.size " + listRepos.size)
                         listRepos.addAll(response.body()!!)
-                        Log.i("listRepos", "listRepos.size " + listRepos.size)
                         listRepositoryAdapter.notifyDataSetChanged()
                     }
                 } else if(response.code() == 403){
@@ -158,7 +152,6 @@ class ProfileFragment : Fragment() {
             override fun onFailure(call: Call<List<Repos>>, t: Throwable) {
                 placeholderOnMessage(getString(R.string.text_placeholder_two))
                 Toast.makeText(context, t.message.toString(), Toast.LENGTH_LONG).show()
-                Log.e("showRepositories", t.message.toString())
             }
         })
     }
