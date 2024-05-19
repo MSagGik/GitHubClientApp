@@ -15,7 +15,7 @@
 </p>
 
 В проекте отсутствует файл с персональными данными разработчика res/values/secret_properties.xml
-\```
+```
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="scheme" translatable="false">example_scheme</string>
@@ -24,7 +24,7 @@
     <string name="client_secret" translatable="false">example_client_secret</string>
     <string name="redirect_url" translatable="false">example_redirect_url</string>
 </resources>
-\```
+```
 
 scheme и host на основе [`<scheme>://<host>:<port><path><pathPrefix>`](https://developer.android.com/guide/topics/manifest/data-element) (https://developer.android.com/guide/topics/manifest/data-element)
 client_id и client_secret назначаются при регистрации приложения OAuth App в [личном кабинете GitHub](https://github.com/settings/developers) (https://github.com/settings/developers)
