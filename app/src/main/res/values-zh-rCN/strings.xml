@@ -32,5 +32,9 @@
     <string name="logout_was_successful">退出成功</string>
     <string name="failed_to_log_out_of_account">无法退出账户</string>
     <string name="company">公司</string>
+    <string name="following">following</string>
+    <string name="number_public_repositories">number public repositories</string>
+    <string name="followers_profile">followers</string>
+    <string name="following_profile">following</string>
     <string name="public_repositories">公共存储库</string>
 </resources>

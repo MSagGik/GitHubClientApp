@@ -53,9 +53,9 @@
     <string name="logout_was_successful">Logout was successful</string>
     <string name="failed_to_log_out_of_account">Failed to log out of account</string>
     <string name="company">company</string>
-    <string name="following" translatable="false">following</string>
-    <string name="number_public_repositories" translatable="false">number public repositories</string>
-    <string name="followers_profile" translatable="false">followers</string>
-    <string name="following_profile" translatable="false">following</string>
+    <string name="following">following</string>
+    <string name="number_public_repositories">number public repositories</string>
+    <string name="followers_profile">followers</string>
+    <string name="following_profile">following</string>
     <string name="public_repositories">public repositories</string>
 </resources>

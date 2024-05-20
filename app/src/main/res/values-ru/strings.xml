@@ -32,5 +32,9 @@
     <string name="logout_was_successful">Выход из системы прошел успешно</string>
     <string name="failed_to_log_out_of_account">Не удалось выйти из аккаунта</string>
     <string name="company">компания</string>
+    <string name="following">подписок</string>
+    <string name="number_public_repositories">публичных репозиториев</string>
+    <string name="followers_profile">подписчиков</string>
+    <string name="following_profile">подписок</string>
     <string name="public_repositories">публичных репозиториев</string>
 </resources>
