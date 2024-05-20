@@ -17,7 +17,7 @@
     <string name="repository_description">Описание репозитория</string>
     <string name="language">Язык</string>
     <string name="follower">"подписчик "</string>
-    <string name="followers">"подписчики "</string>
+    <string name="followers">подписчиков</string>
     <string name="more_than_99_followers">более 99 подписчиков</string>
     <string name="last_commit">крайний коммит</string>
     <string name="request_limit_exceeded">Превышен лимит запросов. Повторите попытку позже (http-код 403).</string>
