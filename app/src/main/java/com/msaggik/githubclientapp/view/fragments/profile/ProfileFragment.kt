@@ -23,11 +23,17 @@ import com.msaggik.githubclientapp.R
 import com.msaggik.githubclientapp.model.entities.item.User
 import com.msaggik.githubclientapp.model.entities.item.repositories.Repos
 import com.msaggik.githubclientapp.model.entities.itemsearch.Item
+import com.msaggik.githubclientapp.model.entities.oauth.Token
 import com.msaggik.githubclientapp.model.network.RestGitHub
 import com.msaggik.githubclientapp.view.adapter.ListRepositoryAdapter
+import okhttp3.OkHttpClient
+import okhttp3.internal.http2.Http2
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 private const val OAUTH_PREFERENCES = "oauth_preferences"
 private const val TOKEN_KEY = "token_key"
@@ -46,6 +52,7 @@ class ProfileFragment : Fragment() {
     private lateinit var numberPublicRepositories: TextView
     private lateinit var textPlaceholder: TextView
     private lateinit var listRepository: RecyclerView
+    private lateinit var buttonLoginOut: Button
 
     private var listRepos: MutableList<Repos> = mutableListOf()
     private lateinit var listRepositoryAdapter: ListRepositoryAdapter
@@ -53,6 +60,10 @@ class ProfileFragment : Fragment() {
     private val gitHubBaseURL = "https://api.github.com"
     private val retrofit = RestGitHub.createRetrofitObject(gitHubBaseURL)
     private val gitHubRestService = retrofit.create(RestGitHub::class.java)
+
+    private val gitHubBaseURLBase = "https://github.com"
+    private val retrofitLogOut = RestGitHub.createRetrofitObjectTest(gitHubBaseURLBase)
+    private val gitHubRestServiceLogOut = retrofitLogOut.create(RestGitHub::class.java)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,6 +84,7 @@ class ProfileFragment : Fragment() {
         numberPublicRepositories = view.findViewById(R.id.number_public_repositories)
         textPlaceholder = view.findViewById(R.id.text_placeholder)
         listRepository = view.findViewById(R.id.list_repository)
+        buttonLoginOut = view.findViewById(R.id.button_login_out)
 
         listRepository.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
@@ -82,11 +94,58 @@ class ProfileFragment : Fragment() {
 
         getProfile(token)
 
+        buttonLoginOut.setOnClickListener(listener)
+
         return view
     }
 
+    private val listener: View.OnClickListener = object : View.OnClickListener {
+        @SuppressLint("NotifyDataSetChanged")
+        override fun onClick(p0: View?) {
+            when (p0?.id) {
+                R.id.button_login_out -> {
+                    logOut(token)
+                }
+            }
+        }
+    }
+
+    private fun logOut(accessToken: String) {
+        if (accessToken.length > 14) {
+            gitHubRestServiceLogOut.logOut(accessToken, Token(accessToken), getString(R.string.client_id)).enqueue(object : Callback<String> {
+                @SuppressLint("NotifyDataSetChanged", "SetTextI18n")
+                override fun onResponse(
+                    call: Call<String>,
+                    response: Response<String>
+                ) {
+                    Log.i("headers", response.headers().toString())
+                    Log.i("code", response.code().toString())
+                    Log.i("body", response.body().toString())
+                    Log.i("message", response.message())
+                    Log.i("raw", response.raw().toString())
+                    Log.i("errorBody", response.errorBody().toString())
+
+                    if (response.code() == 200 || response.code() == 204) {
+                        placeholderOnMessage(getString(R.string.logout_was_successful))
+                    } else if(response.code() == 403){
+                        placeholderOnMessage(getString(R.string.request_limit_exceeded))
+                    } else {
+                        placeholderOnMessage(getString(R.string.text_placeholder_two))
+                    }
+                }
+
+                override fun onFailure(call: Call<String>, t: Throwable) {
+                    placeholderOnMessage(getString(R.string.text_placeholder_two))
+                    Toast.makeText(context, t.message.toString(), Toast.LENGTH_LONG).show()
+                }
+            })
+        } else {
+            placeholderOnMessage(getString(R.string.text_placeholder_two))
+        }
+    }
+
     private fun getProfile(accessToken: String) {
-        if (token.length > 14) {
+        if (accessToken.length > 14) {
             gitHubRestService.getUserInfo(accessToken).enqueue(object : Callback<User> {
                 @SuppressLint("NotifyDataSetChanged", "SetTextI18n")
                 override fun onResponse(

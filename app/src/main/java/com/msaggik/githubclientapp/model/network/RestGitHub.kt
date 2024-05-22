@@ -6,8 +6,10 @@ import com.msaggik.githubclientapp.model.entities.item.repositories.Repos
 import com.msaggik.githubclientapp.model.entities.itemsearch.ResponseServerUsers
 import com.msaggik.githubclientapp.model.entities.item.User
 import com.msaggik.githubclientapp.model.entities.oauth.Token
+import okhttp3.OkHttpClient
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -28,6 +30,16 @@ interface RestGitHub {
         fun createRetrofitObject(baseUrl: String) : Retrofit {
             return  Retrofit.Builder()
                 .baseUrl(baseUrl)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+        }
+
+        fun createRetrofitObjectTest(baseUrl: String): Retrofit {
+            return Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .client(OkHttpClient.Builder().
+                    addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                    .build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         }

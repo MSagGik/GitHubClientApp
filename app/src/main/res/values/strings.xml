@@ -58,4 +58,5 @@
     <string name="followers_profile">followers</string>
     <string name="following_profile">following</string>
     <string name="public_repositories">public repositories</string>
+    <string name="log_out">log out</string>
 </resources>
