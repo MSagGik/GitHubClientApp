@@ -112,7 +112,7 @@ class ProfileFragment : Fragment() {
 
     private fun logOut(accessToken: String) {
         if (accessToken.length > 14) {
-            gitHubRestServiceLogOut.logOut(accessToken, Token(accessToken), getString(R.string.client_id)).enqueue(object : Callback<String> {
+            gitHubRestServiceLogOut.logOut("${getString(R.string.client_id)}:${getString(R.string.client_secret)}", Token(accessToken.substringAfter("Bearer ")), getString(R.string.client_id)).enqueue(object : Callback<String> {
                 @SuppressLint("NotifyDataSetChanged", "SetTextI18n")
                 override fun onResponse(
                     call: Call<String>,

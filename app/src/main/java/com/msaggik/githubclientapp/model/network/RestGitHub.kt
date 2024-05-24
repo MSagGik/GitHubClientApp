@@ -54,10 +54,10 @@ interface RestGitHub {
         @Query("code") code: String
     ): Call<Token>
 
-    @Headers("Accept: application/json")
-    @HTTP(method = "DELETE", path = "/applications/{client_id}/grant", hasBody = true)
+    @Headers("Accept: application/vnd.github+json", "X-GitHub-Api-Version:2022-11-28")
+    @HTTP(method = "DELETE", path = "/applications/{client_id}/token", hasBody = true)
     fun logOut(
-        @Header("Authorization") token: String,
+        @Header("user") clientIdClientSecret: String,
         @Body request: Token,
         @Path("client_id") clientId: String
     ) : Call<String>
