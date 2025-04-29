@@ -75,7 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
-            android:text="@string/followers" />
+            android:text="@string/default_string" />
 
         <TextView
             android:id="@+id/following"
@@ -83,7 +83,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
-            android:text="@string/following" />
+            android:text="@string/default_string" />
 
         <TextView
             android:id="@+id/number_public_repositories"

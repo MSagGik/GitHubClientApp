@@ -4,7 +4,7 @@
     <string name="search">Search</string>
     <string name="setting">Setting</string>
     <string name="application_theme">application theme</string>
-    <string name="user_search_for_collaboration">user search for collaboration</string>
+    <string name="user_search_for_collaboration">User search for collaboration</string>
     <string name="nickname">Nickname</string>
     <string name="_100_subscribers">100 subscribers</string>
     <string name="location">location</string>
@@ -16,15 +16,17 @@
     <string name="repository_metadata">Repository metadata</string>
     <string name="repository_description">Repository description</string>
     <string name="language">Language</string>
-    <string name="follower">follower</string>
-    <string name="followers">followers</string>
+    <plurals name="follower_form">
+        <item quantity="one">%d follower</item>
+        <item quantity="other">%d followers</item>
+    </plurals>
     <string name="more_than_99_followers">more than 99 followers</string>
     <string name="last_commit">last commit</string>
     <string name="request_limit_exceeded">Request limit exceeded, please try again later (http code 403)</string>
     <string name="english">English</string>
     <string name="russian">Russian</string>
     <string name="chinese">Chinese</string>
-    <string name="language_selection">language selection</string>
+    <string name="language_selection">Language</string>
     <string name="test_authentication">Test authentication</string>
     <string name="application_user_agreement_https_docs_github_com">Information about the application and user agreement \n https://docs.github.com</string>
     <string name="authentication_failed_try_again">Authentication failed, try again</string>

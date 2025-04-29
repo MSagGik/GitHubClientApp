@@ -16,8 +16,9 @@
     <string name="repository_metadata">存储库元数据</string>
     <string name="repository_description">存储库描述</string>
     <string name="language">语言</string>
-    <string name="follower">订户</string>
-    <string name="followers">订户</string>
+    <plurals name="follower_form">
+        <item quantity="other">%d 订户s</item>
+    </plurals>
     <string name="more_than_99_followers">超过 99 名订阅者</string>
     <string name="last_commit">最后提交</string>
     <string name="request_limit_exceeded">请求超出限制，请稍后重试（http 代码 403）</string>

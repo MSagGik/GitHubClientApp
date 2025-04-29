@@ -91,7 +91,7 @@
             android:id="@+id/language_selection"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="241dp"
+            android:layout_marginStart="230dp"
             android:layout_marginTop="@dimen/dimen_237"/>
 
         <TextView
@@ -101,7 +101,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginHorizontal="@dimen/dimen_35"
+            android:layout_marginHorizontal="@dimen/dimen_23"
             android:layout_marginBottom="@dimen/dimen_50"
             android:text="@string/application_user_agreement_https_docs_github_com" />
 

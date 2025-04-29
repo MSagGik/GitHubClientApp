@@ -4,7 +4,7 @@
     <string name="search">Поиск</string>
     <string name="setting">Настойки</string>
     <string name="application_theme">тема приложения</string>
-    <string name="user_search_for_collaboration">поиск пользователей</string>
+    <string name="user_search_for_collaboration">Поиск пользователей</string>
     <string name="nickname">Логин</string>
     <string name="_100_subscribers">100 подписчиков</string>
     <string name="location">локация</string>
@@ -16,15 +16,18 @@
     <string name="repository_metadata">Метаданные репозитория</string>
     <string name="repository_description">Описание репозитория</string>
     <string name="language">Язык</string>
-    <string name="follower">"подписчик "</string>
-    <string name="followers">подписчиков</string>
+    <plurals name="follower_form">
+        <item quantity="one">%d подписчик</item>
+        <item quantity="few">%d подписчика</item>
+        <item quantity="many">%d подписчиков</item>
+    </plurals>
     <string name="more_than_99_followers">более 99 подписчиков</string>
     <string name="last_commit">крайний коммит</string>
     <string name="request_limit_exceeded">Превышен лимит запросов. Повторите попытку позже (http-код 403).</string>
     <string name="english">Английский</string>
     <string name="russian">Русский</string>
     <string name="chinese">Китайский</string>
-    <string name="language_selection">выбор языка</string>
+    <string name="language_selection">Выбор языка</string>
     <string name="test_authentication">Тестовая аутентификация</string>
     <string name="application_user_agreement_https_docs_github_com">Информация о приложении и пользовательском соглашении об использовании \n https://docs.github.com</string>
     <string name="authentication_failed_try_again">Аутентификация не прошла, попробуйте ещё раз</string>
