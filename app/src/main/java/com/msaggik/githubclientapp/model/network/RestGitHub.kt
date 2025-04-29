@@ -6,8 +6,10 @@ import com.msaggik.githubclientapp.model.entities.item.repositories.Repos
 import com.msaggik.githubclientapp.model.entities.itemsearch.ResponseServerUsers
 import com.msaggik.githubclientapp.model.entities.item.User
 import com.msaggik.githubclientapp.model.entities.oauth.Token
+import okhttp3.OkHttpClient
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -31,6 +33,16 @@ interface RestGitHub {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         }
+
+        fun createRetrofitObjectTest(baseUrl: String): Retrofit {
+            return Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .client(OkHttpClient.Builder().
+                    addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                    .build())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+        }
     }
 
     // OAuth
@@ -42,10 +54,10 @@ interface RestGitHub {
         @Query("code") code: String
     ): Call<Token>
 
-    @Headers("Accept: application/json")
-    @HTTP(method = "DELETE", path = "/applications/{client_id}/grant", hasBody = true)
+    @Headers("Accept: application/vnd.github+json", "X-GitHub-Api-Version:2022-11-28")
+    @HTTP(method = "DELETE", path = "/applications/{client_id}/token", hasBody = true)
     fun logOut(
-        @Header("Authorization") token: String,
+        @Header("user") clientIdClientSecret: String,
         @Body request: Token,
         @Path("client_id") clientId: String
     ) : Call<String>

@@ -5,7 +5,7 @@
     <string name="setting">Setting</string>
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="application_theme">application theme</string>
-    <string name="user_search_for_collaboration">user search for collaboration</string>
+    <string name="user_search_for_collaboration">User search for collaboration</string>
     <string name="nickname">Nickname</string>
     <string name="_100_subscribers">100 subscribers</string>
     <string name="location">location</string>
@@ -19,7 +19,7 @@
     <string name="repository_metadata">Repository metadata</string>
     <string name="repository_description">Repository description</string>
     <string name="language">Language</string>
-    <string name="language_selection">language selection</string>
+    <string name="language_selection">Language</string>
     <string name="english">English</string>
     <string name="russian">Russian</string>
     <string name="chinese">Chinese</string>
@@ -33,8 +33,14 @@
         <item>ru</item>
         <item>zh-CN</item>
     </string-array>
-    <string name="follower">follower</string>
-    <string name="followers">followers</string>
+    <plurals name="follower_form">
+        <item quantity="zero">%d followers</item>
+        <item quantity="one">%d follower</item>
+        <item quantity="two">%d followers</item>
+        <item quantity="few">%d followers</item>
+        <item quantity="many">%d followers</item>
+        <item quantity="other">%d followers</item>
+    </plurals>
     <string name="more_than_99_followers">more than 99 followers</string>
     <string name="forks" translatable="false">forks</string>
     <string name="stars" translatable="false">stars</string>
@@ -58,4 +64,6 @@
     <string name="followers_profile">followers</string>
     <string name="following_profile">following</string>
     <string name="public_repositories">public repositories</string>
+    <string name="log_out" translatable="false">log out</string>
+    <string name="default_string" translatable="false">-</string>
 </resources>

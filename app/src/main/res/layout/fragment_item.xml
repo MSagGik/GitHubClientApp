@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dimen_16"
-        android:layout_marginTop="@dimen/dimen_50"
+        android:layout_marginTop="@dimen/dimen_55"
         android:text="@string/list_of_repositories" />
 
     <ImageButton
@@ -50,7 +50,7 @@
         style="@style/ViewLine"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_1"
-        android:layout_marginTop="@dimen/dimen_78"
+        android:layout_marginTop="@dimen/dimen_82"
         app:layout_constraintBottom_toBottomOf="@+id/fragmentContainerView" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -58,7 +58,7 @@
         android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/dimen_79"
+        android:layout_marginTop="@dimen/dimen_84"
         android:layout_marginHorizontal="@dimen/dimen_16"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
